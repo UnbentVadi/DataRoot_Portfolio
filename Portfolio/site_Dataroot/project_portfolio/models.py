@@ -1,23 +1,31 @@
 from django.db import models
+from django.contrib.auth.models import UserManager, User
 
-class accauntUser(models.Model):
-    username = models.ForeignKey('auth.User')
-    email_address = models.CharField(max_length=100) 
-    picture = models.FileField(upload_to='media/images/', blank=True, null=True)
-    company = models.CharField(max_length=150, blank=True, null=True)
-    
+class MyUser(User):
+    email_address = models.CharField(max_length=100, verbose_name="Почта") 
+    picture = models.FileField(upload_to='media/images/', verbose_name="Загрузка фото", blank=True, null=True)
+    company = models.CharField(max_length=150, verbose_name='Компания', blank=True, null=True)
 
-class projectName(models.Model):
-	project = models.CharField(max_length=200)
-	projectCompany = models.ForeignKey(accauntUser)
+    objects = UserManager()
+      
+    ''' Imitation model of the user and 
+ 	the addition of fields. '''
+
+class Projects(models.Model):
+	''' Creating a model of the Projects. '''
+
+	name = models.CharField(max_length=200, verbose_name="Названия проекта")
+	projectCompany = models.ForeignKey(MyUser)
 
 	def __str__(self):
-		return self.project
+		return self.name
 
-class linkAddress(models.Model):
-	urlName = models.TextField()
-	urlProject = models.ForeignKey(projectName)
+class Link(models.Model):
+	''' Creating a model of the Link. '''
+
+	url = models.TextField(verbose_name="Ссылка")
+	urlProject = models.ForeignKey(Projects)
 
 	def __str__(self):
-		return self.urlName
+		return self.url
 
