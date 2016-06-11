@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block login %}
+	<div class ="columns">
+		<form action="/login/" method="post">
+		{% csrf_token %}
+		<label for="username">Username</label><br>
+		<input type="text" name="username" id="username"><br>
+		<label for="password">Password</label><br>
+		<input type="password" name="password" id="password"><br>
+		{% if login_error %}
+			 <style type="text/css">
+			 }
+			 </style>
+		{% endif %}
+		<input class="button" type="submit" value="Login">
+		</form>
+	</div>
+{% endblock %}
