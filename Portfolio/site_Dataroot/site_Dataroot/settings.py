@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'site_Dataroot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+        #install mysql!
+#sudo apt-get install mysql-server
+#mysql -u root -p -h localhost
+#CREATE DATABASE `intopython` /*!40100 DEFAULT CHARACTER SET utf8 */ ;
+#GRANT ALL PRIVILEGES ON intopython.* TO 'USER'@'localhost' IDENTIFIED BY 'PASSWORD';
+#sudo apt-get install python3-dev libmysqlclient-dev
+#source ~/python_enviroments/intopython_env/bin/­activate
+#pip install mysqlclient
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'intopython_db',
+        'USER': 'dbuser',
+        'PASSWORD':'123456789',
     }
 }
 
