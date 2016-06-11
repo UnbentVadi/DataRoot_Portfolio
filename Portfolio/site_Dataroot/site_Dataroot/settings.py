@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,9 +79,12 @@ WSGI_APPLICATION = 'site_Dataroot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'NAME': 'db_portfolio',
+        'USER': 'db_user',
+        'PASSWORD': '12345',
     }
 }
+
 
 
 # Password validation
