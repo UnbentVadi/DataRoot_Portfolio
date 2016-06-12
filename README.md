@@ -1,7 +1,5 @@
 # DataRoot_Portfolio
 
-# Добра Пошта 2.0
-
 # Synopsis
 
 
