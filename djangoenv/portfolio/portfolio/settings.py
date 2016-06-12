@@ -55,8 +55,6 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = 'portfolio.urls'
 
 
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
