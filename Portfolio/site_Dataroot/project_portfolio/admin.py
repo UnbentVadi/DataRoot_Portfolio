@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import accauntUser, projectName, linkAddress
+from .models import MyUser, Projects, Link
 
 # Register your models here.
 
 class ArticleInline(admin.StackedInline):
-	model = projectName
+	model = Projects
 	extra = 1
 
 class admin_start(admin.ModelAdmin):
@@ -13,5 +13,5 @@ class admin_start(admin.ModelAdmin):
 class linkAdmin(admin.ModelAdmin):
 	pass
 
-admin.site.register(accauntUser, admin_start)
-admin.site.register(linkAddress, linkAdmin)
+admin.site.register(MyUser, admin_start)
+admin.site.register(Link, linkAdmin)

@@ -79,12 +79,13 @@ WSGI_APPLICATION = 'site_Dataroot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'root',
+        'NAME': 'main',
         'USER': 'root',
         'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
-
 
 
 # Password validation

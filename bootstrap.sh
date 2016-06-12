@@ -42,7 +42,7 @@ sudo apt-get -y install python-virtualenv
 cd ~
 virtualenv --python=python3.4 env
 source /home/vagrant/env/bin/activate
-cd ~/vagrant
+cd /vagrant
 pip install -r requirements.txt
 
 

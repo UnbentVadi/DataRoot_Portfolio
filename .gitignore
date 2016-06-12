@@ -87,6 +87,9 @@ env/
 
 .vagrant/
 
+migrations/
+__pycache__/
+
 # Spyder project settings
 .spyderproject
 
