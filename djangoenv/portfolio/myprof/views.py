@@ -1,15 +1,22 @@
 from django.shortcuts import render, render_to_response, redirect
-from django.http.response import HttpResponse
-from django.template.loader import get_template
-from django.template import Context
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core.context_processors import csrf
 from django.conf import settings
-from django.contrib.auth.hashers import check_password
+
+
+def index(request):
+    """
+    Function for index page. Redirect to login page.
+    """
+    return redirect('/login')
 
 
 def login(request):
+    """
+    Function for login page. If user is not authenticated,
+    function redirect to login page else, open profile page.
+    """
     if request.user.is_authenticated() is True:
         return redirect('/profile')
     args = {}
@@ -40,11 +47,20 @@ def login(request):
 
 
 def logout(request):
+    """
+    Function for logout user.
+    After logout, function redirect user to login page.
+    """
     auth.logout(request)
     return redirect('/')
 
 
-def template_three_simple(request):
+def profile(request):
+    """
+    Function for profile page.
+    If user is authenticated,
+    function open profile page.
+    """
     if request.user.is_authenticated() is True:
         return render_to_response('profile.html', {'name': request.user.username})
     return redirect('/')
