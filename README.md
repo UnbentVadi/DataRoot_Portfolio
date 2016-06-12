@@ -46,5 +46,11 @@ localhost:8000
 ---
 # Start on server
 
+superuser
+
+name root
+
+passw project_portfolio.models
+
 [back to top](#synopsis)
 

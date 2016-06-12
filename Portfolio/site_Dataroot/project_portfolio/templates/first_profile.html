@@ -12,9 +12,7 @@
 	<p>m@il: <a href="mailto:{{user.email}}">{{user.email}}</a></p>
 {% endfor %}
 {% for project in projects%}
-	<p>Project name: <a href="{{ project.id }}">{{project.project}}</a></p>
+	<p>Project name: <a href="{{ project.id }}">{{project.name}}</a></p>
 {%endfor%}
-
-
 </body>
 </html>
