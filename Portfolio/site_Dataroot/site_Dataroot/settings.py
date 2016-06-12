@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'site_Dataroot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_portfolio',
-        'USER': 'db_user',
-        'PASSWORD': '12345',
+        'NAME': 'root',
+        'USER': 'root',
+        'PASSWORD': 'root',
     }
 }
 
