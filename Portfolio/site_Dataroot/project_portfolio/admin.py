@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import MyUser, Projects, Link
+from django.contrib.auth.models import User
 
 # Register your models here.
 
@@ -14,4 +15,5 @@ class linkAdmin(admin.ModelAdmin):
 	pass
 
 admin.site.register(MyUser, admin_start)
+
 admin.site.register(Link, linkAdmin)
