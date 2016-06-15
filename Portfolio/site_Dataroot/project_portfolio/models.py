@@ -1,9 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import UserManager, User
+from django.contrib.auth.models import UserManager, AbstractUser
 
 
-class MyUser(User):
-    # email = models.CharField(max_length=100, verbose_name="Почта")
+class MyUser(AbstractUser):
     picture = models.CharField(max_length=100, verbose_name="Фото", blank=True, null=True)
     company = models.CharField(max_length=150, verbose_name='Компания', blank=True, null=True)
 

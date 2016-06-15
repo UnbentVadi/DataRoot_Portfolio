@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'project_portfolio',
+    'djauth',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'site_Dataroot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/vagrant/Portfolio/site_Dataroot/project_portfolio/templates/',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = 'project_portfolio.MyUser'
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
