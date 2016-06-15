@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>{{ object.username }}</h1>
+<p>
+<img src="http://science-all.com/images/wallpapers/2pac-pictures/2pac-pictures-13.jpg">
+</p>
+<p>Company: {{object.company}}</p>
+<p>m@il: <a href="mailto:{{user.email}}">{{object.email}}</a></p>
+<p>Projects:</p>
+<ul>
+{% for project in projects%}
+	<li><a href="/profile/{{user.id}}/project/{{ project.id }}">{{project.name}}</a></li>
+{%endfor%}
+</ul>
+</body>
+</html>
+
+
