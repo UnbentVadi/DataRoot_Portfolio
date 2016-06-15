@@ -1,9 +1,42 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
+<head>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+	    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css'%}">
+	<script type="text/javascript" src="{% static 'js/iframe.js' %}"></script>
 </head>
 <body>
 {% for url in urls%}
-	<p>{{url.url}}</p>
+	<p><a href="{{url.url}}" class="link">{{url.url}}</a></p>
 {% endfor %}
+	<div id="modal_form">
+		<div class="preview__header">
+			<div class="preview__envato-logo">
+	    		<a href="#"><img src="{% static 'image/logo.png' %}"></a>
+	  		</div>
+	  		<div class="responsive-block">
+				<ul id="responsivator">
+					<li class="response active" id="desktop"></li>
+					<li class="response" id="tablet-portrait"></li>
+					<li class="response" id="tablet-landscape"></li>
+					<li class="response" id="iphone-portrait"></li>
+					<li class="response" id="iphone-landscape"></li>
+				</ul>
+			</div>
+			<div id="modal_close">
+	    		<p>X</p>
+	    	</div>
+	    </div>
+	    <div id="forma">
+	    	<iframe class="menu" src="" frameborder="0" scrolling="yes" width="100%" height="100%"></iframe>
+	    </div>
+		
+	</div>
+	<div id="overlay">
+	</div>
 </body>
 </html>
+
