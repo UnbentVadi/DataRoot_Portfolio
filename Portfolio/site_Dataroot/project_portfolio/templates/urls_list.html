@@ -9,13 +9,13 @@
 	<script type="text/javascript" src="{% static 'js/iframe.js' %}"></script>
 </head>
 <body>
-{% for url in urls%}
-	<p><a href="{{url.url}}" class="link">{{url.url}}</a></p>
+{% for url in urls %}
+	<a href="{{url.url}}" class="link">{{ url.url }}</a>
 {% endfor %}
 	<div id="modal_form">
-		<div class="preview__header">
-			<div class="preview__envato-logo">
-	    		<a href="#"><img src="{% static 'image/logo.png' %}"></a>
+		<div class="preview_header">
+			<div class="preview_envato-logo">
+	    		<a href="{{ accauntuser_id }}"><img src="{% static 'image/logo.png' %}"></a>
 	  		</div>
 	  		<div class="responsive-block">
 				<ul id="responsivator">
@@ -31,9 +31,9 @@
 	    	</div>
 	    </div>
 	    <div id="forma">
-	    	<iframe class="menu" src="" frameborder="0" scrolling="yes" width="100%" height="100%"></iframe>
-	    </div>
-		
+	    	<iframe class="menu" src="" frameborder="0" scrolling="yes" width="100%" height="100%">
+	    	</iframe>
+	    </div>		
 	</div>
 	<div id="overlay">
 	</div>

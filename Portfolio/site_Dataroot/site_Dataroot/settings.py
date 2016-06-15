@@ -58,7 +58,6 @@ ROOT_URLCONF = 'site_Dataroot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/vagrant/Portfolio/site_Dataroot/project_portfolio/templates/',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

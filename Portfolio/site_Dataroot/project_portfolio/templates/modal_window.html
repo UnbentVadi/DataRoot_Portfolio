@@ -1,12 +1,13 @@
 {% extends 'urls_list.html' %}
 {% block modal_list %}
 	<div id="modal_form">
-		<div class="preview__header">
-			<div class="preview__envato-logo">
+		<div class="preview_header">
+			<div class="preview_envato-logo">
 	    		<a href="#"><img src="{% static 'image/logo.png' %}"></a>
 	  		</div>
 	    </div>
-	    <iframe class="menu" src="" frameborder="0" scrolling="yes" width="100%" height="100%"></iframe>
+	    <iframe class="menu" src="" frameborder="0" scrolling="yes" width="100%" height="100%">
+	    </iframe>
 	    <div id="modal_close">
 	    	<p>X</p>
 	    </div>
@@ -14,4 +15,5 @@
 	<div id="overlay">
 	</div>
 {% endblock %}
+
 
