@@ -1,11 +1,12 @@
+# -*- encoding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import UserManager, AbstractUser
-from django.utils import timezone
+
 
 class MyUser(AbstractUser):
     """
     Imitation model of the AbstractUser
-    and adding it to the fields. 
+    and adding it to the fields.
     """
     picture = models.CharField(max_length=100, verbose_name="Фото", blank=True, null=True)
     company = models.CharField(max_length=150, verbose_name='Компания', blank=True, null=True)
@@ -34,4 +35,3 @@ class Link(models.Model):
 
     def __str__(self):
         return self.url
-

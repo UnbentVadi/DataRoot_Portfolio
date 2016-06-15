@@ -17,4 +17,3 @@ class linkAdmin(admin.ModelAdmin):
 admin.site.register(MyUser, admin_start)
 admin.site.register(Link, linkAdmin)
 admin.site.unregister(Group)
-

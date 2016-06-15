@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+</head>
+<body>
+<h1>Project links:</h1>
+<ul>
+<p>{{project}}</p>
+{% for link in links%}
+	<li><a href='{{link.url}}'>{{link.url}}</a></li>
+{%empty%}
+	<p>No projects yet</p>
+{% endfor %}
+</ul>
+</body>
+</html>

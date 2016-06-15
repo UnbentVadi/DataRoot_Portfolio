@@ -1,7 +1,7 @@
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render_to_response, redirect
 from django.contrib import auth
-from django.contrib.auth.models import User
 from django.core.context_processors import csrf
+from project_portfolio.models import MyUser
 
 
 def index(request):
@@ -30,14 +30,14 @@ def login(request):
             args['login_error'] = 'Enter password'
             return render_to_response('login.html', args)
         try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
+            user = MyUser.objects.get(username=username)
+        except MyUser.DoesNotExist:
             args['login_error'] = 'incorrect login'
             return render_to_response('login.html', args)
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('/profile')
+            return redirect('/myprofile')
         else:
             args['login_error'] = 'incorrect password'
             return render_to_response('login.html', args)
@@ -54,7 +54,7 @@ def logout(request):
     return redirect('/')
 
 
-def profile(request):
+def myprofile(request):
     """
     Function for profile page.
     If user is authenticated,
@@ -63,4 +63,3 @@ def profile(request):
     if request.user.is_authenticated() is True:
         return render_to_response('profile.html', {'name': request.user.username})
     return redirect('/')
-
