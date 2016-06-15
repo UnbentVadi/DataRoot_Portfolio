@@ -32,28 +32,3 @@ sudo apt-get -y update
 
 # python virtualenv
 sudo apt-get -y install python-virtualenv
-
-#install ngix supervisor
-
-# sudo apt-get -y install nginx
-# sudo apt-get -y install supervisor
-
-# Make virtual env
-cd ~
-virtualenv --python=python3.4 env
-source /home/vagrant/env/bin/activate
-cd /vagrant
-pip install -r requirements.txt
-
-
-
-# # Set Coupon Environment
-# sudo cat >> /home/vagrant/.bashrc <<- EOM
-# #Coupon Environment
-# export COUPON_ENVIRONMENT=local
-# EOM
-
-# . /home/vagrant/.bashrc
-
-
-#l/etc/defult/locals

@@ -24,7 +24,6 @@ CREATE DATABASE main
 ​
 # exit Ctrl+C
 
-sudo apt-get install python3-dev libmysqlclient-dev
 pip install mysqlclient
 ​
 cd /vagrant/Portfolio/
