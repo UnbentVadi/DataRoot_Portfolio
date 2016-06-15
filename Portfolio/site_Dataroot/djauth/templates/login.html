@@ -1,8 +1,12 @@
 <!DOCTYPE html>
+
+{% load staticfiles %}
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
 </head>
 <body>
 	<div class ="columns">
@@ -14,9 +18,10 @@
 		<input type="password" name="password" id="password"><br>
 		<input class="button" type="submit" value="Login"><br>
 		{% if login_error %}
-			<label class="error"> {{ login_error }} </label>
+		<label class="error"> {{ login_error }}</label>
 		{% endif %}
 		</form>
 	</div>
 </body>
 </html>
+
