@@ -17,7 +17,7 @@ def login(request):
     function redirect to login page else, open profile page.
     """
     if request.user.is_authenticated() is True:
-        return redirect('/profile')
+        return redirect('myprofile/')
     args = {}
     args.update(csrf(request))
     if request.POST:
@@ -37,7 +37,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('/myprofile')
+            return redirect('/myprofile/')
         else:
             args['login_error'] = 'incorrect password'
             return render_to_response('login.html', args)
