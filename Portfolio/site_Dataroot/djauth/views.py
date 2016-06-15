@@ -62,7 +62,5 @@ def myprofile(request):
     function open profile page.
     """
     if request.user.is_authenticated() is True:
-        return render_to_response('profile.html', {'name': request.user.username})
+        return redirect('/profile/%s' % request.user.pk)
     return redirect('/')
-
-

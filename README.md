@@ -1,56 +1,57 @@
-# DataRoot_Portfolio
-
-# Synopsis
-
-
----
+# DataRoot portfolio
 # Quickly start
-
-Запуск проекта
-
-В командній строкі запустити команду
-
+Consle
+​
 ```console
+git clone https://github.com/UnbentVadi/DataRoot_Portfolio.git
+
+cd DataRoot_Portfolio
+
+vagrant up
+
+vagrant ssh
+
 cd ~
 virtualenv --python=python3.4 env
-source /home/vagrant/env/bin/activate
-
+source env/bin/activate
+​
 sudo apt-get install mysql-server
-
-
-user root
-pasw root
-
+​```
+user: root
+pasw: root
+​```console
 mysql -u root -p
-root
-
+# passw: root
+​
 CREATE DATABASE main
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;
-
+​
+# exit Ctrl+C
+​
 cd /vagrant/Portfolio/
 pip install -r requirements.txt
+​
+​
+cd /vagrant/Portfolio/site_Dataroot
 
+​python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+login:
+em@il:
+passw:
+​
+cd 
+ln -s /vagrant/start
+sh start
 
-cd /vagrant/Portfolio/
-python manage.py runserver 0.0.0.0:8000
+# url
 
-```
-
-В браузері ввести url
-
-```console
 localhost:8000
 ```
-
 ---
+
 # Start on server
 
-superuser
-
-name root
-
-passw project_portfolio.models
-
-[back to top](#synopsis)
-
+[back to top](#quickly-start)
