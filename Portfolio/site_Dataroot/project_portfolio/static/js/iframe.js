@@ -1,23 +1,23 @@
 $(document).ready(function() {
-	$('a.link').click( function(event){ // ловим клик по ссылки
+	$('a.link').click( function(event){ // click by link
 		var link_adr = $(this).attr("href");
 		$("iframe").attr("src",link_adr);
-		event.preventDefault(); // выключаем стандартную роль элемента
+		event.preventDefault(); // disable standard role element
 		$('#overlay').fadeIn(100, 
-		 	function(){ // после выполнения предъидущей анимации
+		 	function(){ // after the previous animation
 				$('#modal_form') 
-					.css('display', 'block') // убираем у модального окна display: none;
+					.css('display', 'block') // remove from the modal window display: none;
 					.animate({opacity: 1, height: '100%', position: 'absolute',
 					top: '0%', left: 0, right: 0 }, 0);
 														
 		});
 	});
-	/* Закрытие модального окна, тут делаем то же самое но в обратном порядке */
-	$('#modal_close').click( function(){ // ловим клик по крестику 
+	/* Closing a modal window, then we do the same but in reverse order */
+	$('#modal_close').click( function(){ // click by link 
 		$('#modal_form')
 			.animate({opacity: 0, top: '45%'}, 200,  
-				function(){ // после анимации
-					$(this).css('display', 'none'); // делаем ему display: none;
+				function(){ // after animation
+					$(this).css('display', 'none'); // display: none;
 				}
 			);
 	});

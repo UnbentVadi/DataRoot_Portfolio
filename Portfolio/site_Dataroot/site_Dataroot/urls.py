@@ -3,8 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('project_portfolio.urls')),
-    url(r'', include('djauth.urls')),
-)
+    url(r'^profile/', include('project_portfolio.urls')),
+    #url(r'', include('djauth.urls')),
+]

@@ -5,17 +5,20 @@
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
 	    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}">
 	<script type="text/javascript" src="{% static 'js/iframe.js' %}"></script>
 </head>
 <body>
-{% for url in urls %}
-	<a href="{{url.url}}" class="link">{{ url.url }}</a>
+	<h1>Project links:</h1>
+{% for link in links%}
+	<a href="{{ link.url }}" class="link">{{ link.url }}</a>
+{%empty%}
+	<p>No projects yet</p>
 {% endfor %}
 	<div id="modal_form">
 		<div class="preview_header">
 			<div class="preview_envato-logo">
-	    		<a href="{{ accauntuser_id }}"><img src="{% static 'image/logo.png' %}"></a>
+	    		<a href="/profile/{{ user.id }}"><img src="{% static 'image/logo.png' %}"></a>
 	  		</div>
 	  		<div class="responsive-block">
 				<ul id="responsivator">
