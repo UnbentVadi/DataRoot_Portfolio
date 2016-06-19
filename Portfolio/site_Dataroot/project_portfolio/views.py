@@ -1,6 +1,7 @@
 from project_portfolio.models import MyUser, Projects, Link
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.shortcuts import render
 
 
 class MyUserDetailView(DetailView):
@@ -23,3 +24,5 @@ class LinkListView(ListView):
 		context["links"] = Link.objects.filter(url_project_id = url_project_id)
 		return context
 
+def iframe_page(request):
+	return render(request, "project_portfolio/modal_window.html", {})
