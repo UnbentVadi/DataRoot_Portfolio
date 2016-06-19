@@ -7,21 +7,39 @@
 	<meta charset="UTF-8">
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
+	<script src="http://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/EasePack.min.js"></script>
+	<script src="http://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/rAF.js"></script>
+	<script src="http://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/TweenLite.min.js"></script>
 </head>
 <body>
+	<div class="bg_img">
+		<img src = "{% static 'images/back.jpg' alt='' %}">
+	</div>
+	<div id="myheader" class="myheader">
+	
 	<div class ="columns">
-		<form action="/login/" method="post">
-		{% csrf_token %}
-		<label for="username">Username</label><br>
-		<input type="text" name="username" id="username"><br>
-		<label for="password">Password</label><br>
-		<input type="password" name="password" id="password"><br>
-		<input class="button" type="submit" value="Login"><br>
+		<img src = "{% static 'images/logo.png' id='logo' alt='' %}">
 		{% if login_error %}
 		<label class="error"> {{ login_error }}</label>
+		{% else %}
+		<label class="welcome">Welcome!</label>
 		{% endif %}
+		<form action="/login/" method="post">
+		{% csrf_token %}
+		<div class="field_user">
+		<input type="text" name="username" id="username" placeholder="Username">
+		</div>
+		<div class="field_password">
+		<input type="password" name="password" id="password" placeholder="Password">
+		</div>
+		<div class="field_button">
+		<input class="button" type="submit" value="Sign In">
+		</div>
 		</form>
 	</div>
+	<canvas id="demo-canvas"></canvas>
+	</div>
+	<script src="{% static 'js/script.js' %}"></script>
+
 </body>
 </html>
-
