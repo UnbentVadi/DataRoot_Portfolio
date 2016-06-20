@@ -13,6 +13,15 @@
 	<li><a href="/profile/{{user.id}}/project/{{ project.id }}">{{project.name}}</a></li>
 {%endfor%}
 </ul>
+<hr>
+<h1>Recently changed:</h1>
+<ul>
+{%for change in changes%}
+	<li><a href="{{change.url}}">{{change.url}}</a>  |  {{change.publish}}</li>
+{%empty%}
+	<p>No changes yet</p>
+{%endfor%}
+</ul>
 </body>
 </html>
 
