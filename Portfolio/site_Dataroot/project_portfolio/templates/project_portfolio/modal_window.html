@@ -5,6 +5,8 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}">
     <script type="text/javascript" src="{% static 'js/iframe.js' %}"></script>
 </head>
@@ -12,22 +14,39 @@
     <div class="toolbar">
         <ul class="menu">
             <li><img src="{% static 'image/menu-lines.svg' %}" class="menu_profile"></li>
-            <li class="profile">Profile</li>
+            <li class="profile"><a href="/profile/{{user.id}}">PROFILE</a></li>
         </ul>
         <ul id="devices">
-            <li class="response active" id="autosize"><img src="{% static 'image/maximize.svg' %}" title="Auto Size"></li>
-            <li  class="response" id="tv"><img src="{% static 'image/display.svg' %}" title="HDTV 1080p"></li>
-            <li class="response" id="widescreen"><img src="{% static 'image/display1.svg' %}" title="Widescreen"></li>
-            <li class="response" id="ipad_screen"><img src="{% static 'image/display2.svg' %}" title="Tablet (e.g. Apple iPad 2-3rd, mini)"></li>
-            <li class="response" id="iphone_screen"><img src="{% static 'image/display3.svg' %}" title="Apple iPhone 5"></li>
-            <li class="response" id="mobile"><img src="{% static 'image/display4.svg' %}" title="Mobile (e.g. Apple iPhone)"></li>
+            <li class="response active" id="autosize"><img src="{% static 'image/lines.svg' %}" title="Auto Size" id="autosize_img"></li>
+            <li  class="response" id="tv"><img src="{% static 'image/screen.svg' %}" title="HDTV 1080p" id="tv_img"></li>
+            <li class="response" id="widescreen"><img src="{% static 'image/display1.svg' %}" title="Widescreen"  id="widescreen_img" ></li>
+            <li class="response" id="ipad_screen"><img src="{% static 'image/display2.svg' %}" title="Tablet (e.g. Apple iPad 2-3rd, mini)" id="ipad_screen_img"></li>
+            <li class="response" id="iphone_screen"><img src="{% static 'image/display3.svg' %}" title="Apple iPhone 5" id="iphone_screen_img"></li>
+            <li class="response" id="mobile"><img src="{% static 'image/display4.svg' %}" title="Mobile (e.g. Apple iPhone)" id="mobile_img"></li>
+        </ul>
+        <div class="out">
+            <a href=""><img src="{% static 'image/exit.svg' %}" class="close_out"></a>
+        </div>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li><img src="{% static 'image/exit.svg' %}" class="close"></li>
+            <li><a class="golovna">Header page</a><b class="loading"></b></li>
+            <li><a class="profile_one">Profile</a><b class="loading"></b></li>
+            <li><a class="settings">Settings</a><b class="loading"></b></li>
+            <li><a class="search">Search</a><b class="loading"></b></li>
         </ul>
     </div>
     <div class="" id="content">
-        <div id="phantom" class=""></div>
-        <div id="wrapper" class="">
-            <iframe src="https://ru.inettools.net/app/image/index/8" scrolling="yes" frameborder="0" height="100%" width="100%">
+        <div id="phantom" class="leftX"></div>
+        <div id="wrapper" class="autosize">
+            <iframe src="http://javascript.ru/window.history" scrolling="no" frameborder="1" height="100%" width="100%" class="">
             </iframe>
+            <b class="" id="handle-e"></b>
+            <b class="" id="handle-s"></b>
+            <b class="" id="handle-w"></b>
+            <b class="" id="handle-se"></b>
+            <b class="" id="handle-sw"></b>
         </div>
     </div>      
 </body>
