@@ -1,23 +1,12 @@
-.bg_img {
-    position:fixed;
-    top:-50%;
-    left:-50%;
-    width:200%;
-    height:200%;
-    z-index: 2;
+html {
+    background: url('../images/back.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.bg_img img {
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    margin:auto;
-    min-width:50%;
-    min-height:50%;
-}
-.myheader{
+.header-first {
     background-color: rgba(0,0,0,0.3);
     position: fixed;
     top: 0;
@@ -27,7 +16,7 @@
     z-index: 3;
 }
 
-.columns{
+.columns {
 	background-color:rgba(6,11,25,0.76);
 	position: absolute;
 	top: 50%;
@@ -42,15 +31,14 @@
     border-left: 26px solid rgba(11,26,39,.79);
 }
 
-
-.columns img{
+.columns img {
 	display: block;
     margin: 4.46% auto 0; 
     width: 238.75px;
     height: 60px;
 }
 
-.error, .welcome{
+.error, .welcome {
     display: block;
     width: 238.75px;
     margin: 21.5px auto 0;
@@ -60,12 +48,12 @@
     letter-spacing: 0.5px;
 }
 
-form{
+form {
     width: 238.75px;
     margin: 27.5px auto 0;
 }
 
-input{
+input {
 	background-color: transparent;
 	background-repeat: no-repeat;
 	border:none;
@@ -80,57 +68,42 @@ input{
     letter-spacing: 0.5px;
 }
 
-input:focus{
+input:focus {
 	outline: none;
 }
 
-.field_user input{
+.field-user input {
 	background-image: url('../images/head.svg') ;
 	background-size: 17px;
     background-position: 8.5px 7.25px;
 }
 
-
-div .field_password{
+div .field-password {
     margin-top: 31.75px;
 }
 
-.field_password input{
+.field-password input {
 	background-image: url('../images/lock.svg') ;
 	background-size: 17px;
     background-position: 8px 7.25px;
 }
 
-.field_button{
+.field-button {
     margin: 42.75px auto 0;
     width: 129.5px;
     height: 33.75px;
 }
 
-.button{
+.button {
     background-color: rgb(30,186,107);
     text-align: center;
     text-indent: 0;
     border:none;
     border-radius: 5px;
     font-size: 16px;   
-        cursor: pointer;
+    cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
     background-color: rgb(24,150,86);
-
 }
-    
-
-.demo-1 .columns {
-    text-transform: uppercase;
-    font-size: 4.2em;
-    letter-spacing: 0.1em;
-}
-
-.main-title .thin {
-    font-weight: 200;
-}
-
-
