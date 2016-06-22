@@ -28,7 +28,7 @@ def login(request):
             args['login_error'] = 'Enter username'
             return render_to_response('login.html', args)
         if password == '':
-            args['login_error'] = 'Enter password'
+            args['login_error_2'] = 'Enter password'
             return render_to_response('login.html', args)
         try:
             user = MyUser.objects.get(username=username)
@@ -40,7 +40,7 @@ def login(request):
             auth.login(request, user)
             return redirect('/myprofile/')
         else:
-            args['login_error'] = 'incorrect password'
+            args['login_error_2'] = 'incorrect password'
             return render_to_response('login.html', args)
     else:
         return render_to_response('login.html', args)
