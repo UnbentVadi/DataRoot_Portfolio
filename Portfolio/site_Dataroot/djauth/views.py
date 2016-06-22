@@ -24,23 +24,25 @@ def login(request):
     if request.POST:
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        args['password'] = password
+        args['user'] = username
         if username == '':
             args['login_error'] = 'Enter username'
             return render_to_response('login.html', args)
         if password == '':
-            args['login_error_2'] = 'Enter password'
+            args['password_error'] = 'Enter password'
             return render_to_response('login.html', args)
         try:
             user = MyUser.objects.get(username=username)
         except MyUser.DoesNotExist:
-            args['login_error'] = 'incorrect login'
+            args['login_error'] = 'Incorrect login'
             return render_to_response('login.html', args)
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
             return redirect('/myprofile/')
         else:
-            args['login_error_2'] = 'incorrect password'
+            args['password_error'] = 'Incorrect password'
             return render_to_response('login.html', args)
     else:
         return render_to_response('login.html', args)

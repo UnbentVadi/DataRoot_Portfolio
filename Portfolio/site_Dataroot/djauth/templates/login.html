@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 {% load staticfiles %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,29 +17,31 @@
                 background-image: url({% static 'images/head_pink.svg' %});
                 background-size: 17px;
                 background-position: 8.5px 7.2px;
+                color: rgb(228, 76, 101);
             }
         </style>
         <label class="error"> {{ login_error }}</label>
-        {% elif login_error_2%}
+        {% elif password_error%}
         <style>
             #password {
                 border-bottom: 1px solid rgb(228, 76, 101);
                 background-image: url({% static 'images/lock_pink.svg' %});
                 background-size: 17px;
                 background-position: 8.5px 7.2px;
+                color: rgb(228, 76, 101);
             }
         </style>
-        <label class="error"> {{ login_error_2 }}</label>
+        <label class="error"> {{ password_error }}</label>
         {% else %}
         <label class="welcome">Welcome!</label>
         {% endif %}
         <form action="/login/" method="post">
         {% csrf_token %}
         <div class="field-user">
-        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="text" name="username" id="username" value="{{user}}" placeholder="Username">
         </div>
         <div class="field-password">
-        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" name="password" id="password" value="{{password}}" placeholder="Password">
         </div>
         <div class="field-button">
         <input class="button" type="submit" value="Sign In">
