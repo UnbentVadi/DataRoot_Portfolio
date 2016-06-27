@@ -13,6 +13,7 @@ def sort_links(links_list):
 	sort_changes = sorted(sort_changes, key=lambda links_list: links_list.publish, reverse=True)
 	return sort_changes
 
+
 class MyUserDetailView(DetailView):
 	"""
 	Accepts the request for showing profile page 
@@ -30,7 +31,8 @@ class MyUserDetailView(DetailView):
 		for i in range(len(user_projects)):
 			project_links = Link.objects.filter(url_project = user_projects[i])
 			changes.append(project_links)
-		context['changes']= sort_links(changes)[:10]
+		context['ten_changes']= sort_links(changes)[:10]
+		context['three_changes']= sort_links(changes)[:3]
 		return context
 
 

@@ -1,27 +1,83 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/profile_style.css' %}">
+</head>
 <body>
-<h1>{{ object.username }}</h1>
-<p>
-<img src="http://science-all.com/images/wallpapers/2pac-pictures/2pac-pictures-13.jpg">
-</p>
-<p>Company: {{object.company}}</p>
-<p>m@il: <a href="mailto:{{user.email}}">{{object.email}}</a></p>
-<p>Projects:</p>
-<ul>
-{% for project in projects%}
-	<li><a href="/profile/{{user.id}}/project/{{ project.id }}">{{project.name}}</a></li>
-{%endfor%}
-</ul>
-<hr>
-<h1>Recently changed:</h1>
-<ul>
-{%for change in changes%}
-	<li><a href="{{change.url}}">{{change.url}}</a>  |  {{change.publish}}</li>
-{%empty%}
-	<p>No changes yet</p>
-{%endfor%}
-</ul>
+<div class="header">
+	<ul class="nav">
+		<li class="logo"><a href="#"><img src="{% static 'image/logo.png' %}"</a></li>
+		<li><a href="#"" class="profile"> PROFILE</a></li>
+		<li><a href="#" class="updates">UPDATES</a></li>
+	</ul>
+	<div class="user_nav">
+		<ul>
+			<li class="dropdown_username">
+				<a class="user">
+					<img class="user_ava" src="{% static 'image/head.svg' %}">
+					{{ object.username }}
+					<img src="{% static 'image/dropdown-cf3420.svg' %}" class="dropdown_image">
+				</a>
+				<a>PROFILE</a>
+				<a>UPDATES</a>
+				<a>PROFILE</a>
+			</li>
+		</ul>
+	</div>
+	<div class="buzzer_nav">
+		<ul>
+			<li class="dropdown_buzzer">
+				<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer_img"></a>
+				{% for change in three_changes%}
+					<a href="{{change.url}}">
+					<ul class="link_data">
+						<li>{{change.url}}</li>
+						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>Project</li>
+						<li>{{change.publish}}</li>
+					</ul>
+					</a>
+				{% empty %}
+					<p>No changes yet</p>
+				{% endfor %}
+			</li>
+		</ul>
+	</div>
+	<div class="invisibles">
+		<div class="invisible1"></div>
+		<div class="invisible2"></div>
+		<div class="invisible3"></div>
+		<div class="invisible4"></div>
+	</div>
+</div>
+<div class="user_data">
+	<img class="ava" src="{% static 'image/head.svg' %}">
+	<h1 class="username">{{ object.username }}</h1>
+	<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
+</div>
+<div class="projects">
+	<p>Projects:</p>
+	<ul>
+	{% for project in projects%}
+		<li><a href="/profile/{{user.id}}/project/{{ project.id }}">{{project.name}}</a></li>
+	{%endfor%}
+	</ul>
+</div>
+<div class="last_update">
+	<h1>Recently changed:</h1>
+	<ul>
+	{%for change in ten_changes%}
+		<li><a href="{{change.url}}">{{change.url}}</a>  |  {{change.publish}}</li>
+	{%empty%}
+		<p>No changes yet</p>
+	{%endfor%}
+	</ul>
+</div>
+<div class="footer">
+	<p class="copyright">&copy All rights reserved</p>
+	<p class="dataroot">dataroot.co</p>
+</div>
 </body>
 </html>
 
