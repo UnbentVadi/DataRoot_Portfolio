@@ -25,10 +25,10 @@
 			</li>
 		</ul>
 	</div>
+	<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer_img"></a>
 	<div class="buzzer_nav">
 		<ul>
 			<li class="dropdown_buzzer">
-				<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer_img"></a>
 				{% for change in three_changes%}
 					<a href="{{change.url}}">
 					<ul class="link_data">

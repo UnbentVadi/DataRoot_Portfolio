@@ -154,6 +154,7 @@ body {
 	overflow: hidden;
 	top: 14px;
 	right: 68px;
+	transition: all .3s ease-in-out;
 }
 
 .buzzer_nav:hover {
@@ -169,8 +170,11 @@ body {
 	height: 24px;
 	display: block;
 	position: absolute;
-	top: 0px;
+	top: 14px;
+	right: 68px;
+	z-index: 9;
 }
+
 
 .buzzer_nav:hover .buzzer {
 	top: 14px;
