@@ -55,6 +55,7 @@
 	<img class="ava" src="{% static 'image/head.svg' %}">
 	<h1 class="username">{{ object.username }}</h1>
 	<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
+	<p class="joined">Joined on some date</p>
 </div>
 <div class="projects">
 	<p>Projects:</p>
@@ -65,13 +66,22 @@
 	</ul>
 </div>
 <div class="last_update">
-	<h1>Recently changed:</h1>
+	<h1>Last Update</h1>
 	<ul>
-	{%for change in ten_changes%}
-		<li><a href="{{change.url}}">{{change.url}}</a>  |  {{change.publish}}</li>
-	{%empty%}
-		<p>No changes yet</p>
-	{%endfor%}
+		<li>
+			{% for change in five_changes%}
+				<a href="{{change.url}}">
+				<ul class="updates_data">
+					<li>{{change.url}}</li>
+					<li><img src="{% static 'image/Finish.svg' %}"></li>
+					<li>Project</li>
+					<li>{{change.publish}}</li>
+				</ul>
+				</a>
+			{% empty %}
+				<p>No changes yet</p>
+			{% endfor %}
+		</li>
 	</ul>
 </div>
 <div class="footer">

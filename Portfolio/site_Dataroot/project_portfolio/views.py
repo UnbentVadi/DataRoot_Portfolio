@@ -31,7 +31,7 @@ class MyUserDetailView(DetailView):
 		for i in range(len(user_projects)):
 			project_links = Link.objects.filter(url_project = user_projects[i])
 			changes.append(project_links)
-		context['ten_changes']= sort_links(changes)[:10]
+		context['five_changes']= sort_links(changes)[:5]
 		context['three_changes']= sort_links(changes)[:3]
 		return context
 
