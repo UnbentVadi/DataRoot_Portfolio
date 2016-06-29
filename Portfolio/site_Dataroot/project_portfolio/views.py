@@ -27,6 +27,7 @@ class MyUserDetailView(DetailView):
 		context['projects'] = Projects.objects.filter(project_company = project_company)
 		user = MyUser.objects.get(pk=self.kwargs['pk'])
 		user_projects = user.projects_set.all()
+		context["projects_count"] = len(user_projects)
 		changes = []
 		for i in range(len(user_projects)):
 			project_links = Link.objects.filter(url_project = user_projects[i])

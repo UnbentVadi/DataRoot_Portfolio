@@ -57,13 +57,19 @@
 	<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
 	<p class="joined">Joined on some date</p>
 </div>
-<div class="projects">
-	<p>Projects:</p>
-	<ul>
+<div class="projects">        
+	<h1>Your Projects ({{ projects_count }})</h1>
 	{% for project in projects%}
-		<li><a href="/profile/{{user.id}}/project/{{ project.id }}">{{project.name}}</a></li>
+		<div class="project_block">
+			<a href="/profile/{{user.id}}/project/{{ project.id }}"><img class="project_ava" src="http://www.2pac.ru/sites/default/files/2Pac_Portrait_Wallpaper_1_by_grungejunky.jpg"></a>
+			<p class="project_name">{{project.name}}</p>
+			<ul>
+				<li class="project_data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
+				<li class="project_data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
+				<li class="project_data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
+			</ul>
+		</div>
 	{%endfor%}
-	</ul>
 </div>
 <div class="last_update">
 	<h1>Last Update</h1>
