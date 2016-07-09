@@ -3,38 +3,42 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/profile_style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+	<script>
+		document.createElement('aside');
+	</script>
 </head>
 <body>
-<div class="header">
+<header>
 	<ul class="nav">
 		<li class="logo"><a href="#"><img src="{% static 'image/logo.png' %}"</a></li>
-		<li><a href="#"" class="profile"> PROFILE</a></li>
-		<li><a href="#" class="updates">UPDATES</a></li>
+		<li><a href="#" class="profile">Profile</a></li>
+		<li><a href="#" class="updates">Updates</a></li>
 	</ul>
-	<div class="user_nav">
+	<nav class="user-nav">
 		<ul>
-			<li class="dropdown_username">
+			<li class="dropdown-username">
 				<a class="user">
-					<img class="user_ava" src="{% static 'image/head.svg' %}">
+					<img class="user-ava" src="{% static 'image/head.svg' %}">
 					{{ object.username }}
-					<img src="{% static 'image/dropdown-cf3420.svg' %}" class="dropdown_image">
+					<img src="{% static 'image/dropdown-cf3420.svg' %}" class="dropdown-image">
 				</a>
 				<a>PROFILE</a>
 				<a>UPDATES</a>
 				<a>PROFILE</a>
 			</li>
 		</ul>
-	</div>
-	<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer_img"></a>
-	<div class="buzzer_nav">
+	</nav>
+	<nav class="buzzer-nav">
+	<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 		<ul>
-			<li class="dropdown_buzzer">
+			<li class="dropdown-buzzer">
 				{% for change in three_changes%}
 					<a href="{{change.url}}">
-					<ul class="link_data">
+					<ul class="link-data">
 						<li>{{change.url}}</li>
 						<li><img src="{% static 'image/Finish.svg' %}"></li>
-						<li>Project</li>
+						<li>{{ project_name }}</li>
 						<li>{{change.publish}}</li>
 					</ul>
 					</a>
@@ -43,46 +47,49 @@
 				{% endfor %}
 			</li>
 		</ul>
-	</div>
+	</nav>
 	<div class="invisibles">
-		<div class="invisible1"></div>
-		<div class="invisible2"></div>
-		<div class="invisible3"></div>
-		<div class="invisible4"></div>
+		<div class="invisible-1"></div>
+		<div class="invisible-2"></div>
 	</div>
-</div>
-<div class="user_data">
+</header>
+<div class="user-data">
 	<img class="ava" src="{% static 'image/head.svg' %}">
 	<h1 class="username">{{ object.username }}</h1>
 	<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
 	<p class="joined">Joined on some date</p>
 </div>
-<div class="projects">        
+<div class="projects">       
 	<h1>Your Projects ({{ projects_count }})</h1>
 	{% for project in projects%}
-		<div class="project_block">
-			<a href="/profile/{{user.id}}/project/{{ project.id }}"><img class="project_ava" src="http://www.2pac.ru/sites/default/files/2Pac_Portrait_Wallpaper_1_by_grungejunky.jpg"></a>
-			<p class="project_name">{{project.name}}</p>
+		<aside class="project-block">
+			<a href="/profile/{{ object.id }}/project/{{ project.id }}" class="project-link">
+				<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgiklLfpmzld5IL8q3mTjjvv2Cy2ONdEFfbdUjiGLXgrooyUVe" class="project-photo">
+			</a>
+			<div class="project-name">
+				<a href="/profile/{{ object.id }}/project/{{ project.id }}">{{project.name}}</a>
+				<div class="point"></div>
+			</div>
 			<ul>
-				<li class="project_data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
-				<li class="project_data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
-				<li class="project_data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
+				<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
+				<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
+				<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
 			</ul>
-		</div>
+		</aside>
 	{%endfor%}
 </div>
-<div class="last_update">
+<div class="last-update">
 	<h1>Last Update</h1>
 	<ul>
 		<li>
 			{% for change in five_changes%}
 				<a href="{{change.url}}">
-				<ul class="updates_data">
-					<li>{{change.url}}</li>
-					<li><img src="{% static 'image/Finish.svg' %}"></li>
-					<li>Project</li>
-					<li>{{change.publish}}</li>
-				</ul>
+					<ul class="updates-data">
+						<li>{{change.url}}</li>
+						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.url_project}}</li>
+						<li>{{change.publish}}</li>
+					</ul>
 				</a>
 			{% empty %}
 				<p>No changes yet</p>
@@ -90,10 +97,10 @@
 		</li>
 	</ul>
 </div>
-<div class="footer">
+<div class="for-footer"></div>
+<footer>
 	<p class="copyright">&copy All rights reserved</p>
 	<p class="dataroot">dataroot.co</p>
-</div>
+</footer>
 </body>
 </html>
-
