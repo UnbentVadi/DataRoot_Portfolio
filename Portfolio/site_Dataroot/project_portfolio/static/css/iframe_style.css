@@ -5,7 +5,7 @@
 }
 .toolbar {
     font-size: 12px;
-    height: 38px;
+    height: 50px;
     background-color: #232d38;
     z-index: 100;
     line-height: 54px;
@@ -21,7 +21,7 @@
     position: relative;
     display: inline-block;
     float: left;
-    height: 38px;
+    height: 50px;
     white-space: nowrap;
     text-align: center;
     border-right: 1px solid #0e1216;
@@ -37,14 +37,14 @@
     padding: 20px;
     position: fixed;
     z-index: 100;
-    overflow: hidden !important;
+    overflow: hidden;
     left: -299px;
     transition: left 0.6s ease-out 0.3s;  
     top: 0;
 }
 
 .asidebar {
-    left: 0 !important;
+    left: 0;
 }
 
 .sidebar li {
@@ -55,15 +55,15 @@
 }
 
 .sidebar li:first-child {
-    border-bottom: none !important;
+    border-bottom: none;
 }
 
 .out {
     display: block;
     position: absolute;
     right: 18px;
-    top: -4%;
-    height: 38px;
+    top: 10%;
+    height: 50px;
     width: 75px;
 }
 
@@ -78,10 +78,11 @@
     opacity: 0.9;
     cursor: pointer;
     letter-spacing: 0.1px;
-    padding-left:4px; 
+    padding-left: 4px; 
     font-size: 15px;
     font-weight: 500;
 }
+
 a {
     text-decoration: none;
     color: #fff;
@@ -106,12 +107,11 @@ a:vizited {
 } 
 
 .sidebar ul {
-    margin-top:-25px; 
+    margin-top: -25px; 
 }
 
 .menu {
-    display: block;
-    position: relative;
+    box-sizing: border-box;
 }
 
 .menu li {
@@ -127,10 +127,24 @@ a:vizited {
 }
 
 .menu_profile {
-    width: 23px;
+    width: 25px;
     height: auto;
     margin-left: 0px;
-    margin-top: 10%;
+    margin-top: 23%;
+}
+
+.size {
+    height: 50px;
+    width: 150px;
+    position: absolute;
+    top: 0;
+    left: 41%;
+    color: #fff;
+    border-right: 1px solid #0e1216;
+}
+
+.size_value {
+    text-align: center;
 }
 
 #content {
@@ -143,14 +157,19 @@ a:vizited {
     position: relative;
     overflow: visible;
     margin: 25px auto 40px;
-    height: 100%;
-    width: 100%;
     min-width: 320px;
+    box-sizing: border-box;
+}
+
+.phantom_view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 #content {
     position: fixed;
-    top: 38px;
+    top: 50px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -158,36 +177,44 @@ a:vizited {
     overflow: auto;
 }
 
-#handle-e {
+.iframe_back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+#e {
     top: 0;
     right: -20px;
     width: 20px;
     height: 100%; 
 }
 
-b[id^="handle-"] {
+#e, #s, #se {
     display: block;
     position: absolute;
     opacity: .2;
 }
 
-#handle-e::before {
+#e:before {
     top: 50%;
     left: 100%;
     width: 6px;
     height: 24px;
     margin: -12px 0 0 -6px;
-}
-
-#handle-e::before, #handle-s::before {
     content: '';
     background-color: currentColor;
     display: block;
     position: absolute;
-    cursor: pointer;
+    cursor: e-resize;
 }
 
-#handle-s {
+.autosize > b {
+    display: none !important;
+}
+
+#s {
     bottom: -20px;
     left: 0;
     width: 100%;
@@ -195,61 +222,43 @@ b[id^="handle-"] {
 }
 
 
-#handle-s::before {
+#s:before {
     top: 100%;
     left: 50%;
     width: 24px;
     height: 6px;
     margin: -6px 0 0 -12px;
-
+    content: '';
+    background-color: currentColor;
+    display: block;
+    position: absolute;
+    cursor: s-resize;
 }
 
-#handle-w {
-    top: 0;
-    left: -20px;
-    width: 20px;
-    height: 100%;
-}
-
-#handle-se {
-    right: -20px;
-}
-
-#handle-se, #handle-sw {
+#se {
     bottom: -20px;
     height: 20px;
     width: 20px;
-}
-
-#handle-se {
     border-style: none solid solid none;
     border-width: 0 6px 6px 0;
     border-color: currentColor;
-}
-
-#handle-sw {
-    left: -20px;
+    right: -20px;
+    cursor: se-resize;
 }
 
 #phantom {
     background-color: currentColor;
-    position: absolute;
     opacity: .05;
-    z-index: -1;
-    left: 50%;
+    z-index: 0;
 }
 
-.leftX {
-    margin-left: -50% !important;
-}
-
-.profile {
+.profile, .updates {
     width: 100px !important;
     color: #fff;
     text-align: center;
     font-size: 14px;
     margin: auto;
-    line-height: 38px;
+    line-height: 48px;
     font-family: Verdana;
 }
 
@@ -259,14 +268,14 @@ b[id^="handle-"] {
 
 #ipad_screen_img {
     width: 22px !important;
-    margin-top: 10% !important;
+    margin-top: 22% !important;
     height: auto !important;
 }
 
 #widescreen_img {
     width: 32px !important;
     margin: 0 5px !important;
-    margin-top: 15% !important;
+    margin-top: 25% !important;
 }
 
 a img {
@@ -287,11 +296,11 @@ a img {
     height: auto;
     opacity: 1;
     margin: 0 10px;
-    margin-top: 17%;
+    margin-top: 32%;
 }
 
 .responsive-block {
-    display: block !important;
+    display: block;
 	width: 240px;
 	border-left: 1px solid #cfd8dc;
 	position: relative;
@@ -303,7 +312,7 @@ a img {
 }
 
 .response {
-    display: inline-block !important;
+    display: inline-block;
 }
 
 .active {
@@ -317,49 +326,67 @@ a img {
 }
 
 .tv {
-    width: 1920px !important;
-    height: 1080px !important;
-    overflow-x: visible !important;
+    width: 1920px;
+    height: 1080px;
+    overflow-x: visible;
     margin-bottom: 75px !important; 
 }
 
-.widescreen {
-    width: 1280px !important;
-    height: 800px !important;
-    margin-bottom: 75px !important;
-    margin-right: 100px !important;
+.tv.portateit {
+    width: 1080px;
+    height: 1920px;
 }
 
+.widescreen {
+    width: 1280px;
+    height: 800px;
+    margin-bottom: 75px !important;
+    margin-right: 100px;
+}
+
+.widescreen.portateit {
+    width: 800px;
+    height: 1280px;
+}
 
 .ipad_screen {
-    width: 768px !important;
-    height: 1024px !important;
+    width: 768px;
+    height: 1024px;
     margin-bottom: 100px !important; 
 }
 
+.ipad_screen.portateit {
+    width: 1024px;
+    height: 738px;
+}
+
 .iphone_screen {
-    width: 320px !important;
-    height: 568px !important;
+    width: 320px;
+    height: 568px;
 }
 
 .mobile {
-    width: 320px !important;
-    height: 480px !important;
-    transition: all 150ms cubic-bezier(.5,0,1,1);
+    width: 320px;
+    height: 480px;
+}
+
+.iphone_screen.portateit {
+    width: 568px;
+    height: 320px;
+}
+
+.mobile.portateit {
+    width: 480px;
+    height: 320px;
 }
 
 .hover_in {
     transform: rotate(90deg);
-} 
+}
 
 .hover_li {
     transform: rotate(90deg);
+    margin-top: 10%;
 } 
+ 
 
-.hover_out {
-    transform: rotate(0deg);
-}
-
-.hover_out_li {
-    transform: rotate(0deg);
-} 
