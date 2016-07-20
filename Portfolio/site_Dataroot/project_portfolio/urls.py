@@ -1,9 +1,12 @@
 from django.conf.urls import url
 from django.contrib import admin
-from .views import MyUserDetailView, LinkListView
+from .views import MyUserDetailView, LinkDeatailView
 
 urlpatterns = [
-    url(r'^(?P<pk>[0-9]+)/$', MyUserDetailView.as_view(), name='MyUser_detail'),# profile
-    url(r'^(?P<accauntuser_id>[0-9]+)/project/(?P<projectname_id>[0-9]+)/$', LinkListView.as_view(), name = 'link_list'),# project links
+    url(r'^(?P<pk>[0-9]+)/$', MyUserDetailView.as_view(template_name = 'project_portfolio/profile.html'), name='Profile'),
+    url(r'^(?P<pk>[0-9]+)/project/(?P<projectname_id>[0-9]+)/$', LinkDeatailView.as_view(template_name = 'project_portfolio/project.html'), name = 'Project'),
+    url(r'^(?P<pk>[0-9]+)/updates/$', MyUserDetailView.as_view(template_name = 'project_portfolio/updates.html'), name='Updates'),
+    url(r'^(?P<pk>[0-9]+)/settings/$', MyUserDetailView.as_view(template_name = 'project_portfolio/settings.html'), name='Settings'),
+
 ]
 

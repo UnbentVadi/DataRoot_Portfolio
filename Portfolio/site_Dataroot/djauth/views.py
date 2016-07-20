@@ -18,29 +18,31 @@ def login(request):
     function redirect to login page else, open profile page.
     """
     if request.user.is_authenticated() is True:
-        return redirect('/myprofile')
+        return redirect('myprofile/')
     args = {}
     args.update(csrf(request))
     if request.POST:
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        args['password'] = password
+        args['user'] = username
         if username == '':
             args['login_error'] = 'Enter username'
             return render_to_response('login.html', args)
         if password == '':
-            args['login_error'] = 'Enter password'
+            args['password_error'] = 'Enter password'
             return render_to_response('login.html', args)
         try:
             user = MyUser.objects.get(username=username)
         except MyUser.DoesNotExist:
-            args['login_error'] = 'incorrect login'
+            args['login_error'] = 'Incorrect login'
             return render_to_response('login.html', args)
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('/myprofile')
+            return redirect('/myprofile/')
         else:
-            args['login_error'] = 'incorrect password'
+            args['password_error'] = 'Incorrect password'
             return render_to_response('login.html', args)
     else:
         return render_to_response('login.html', args)
@@ -62,7 +64,5 @@ def myprofile(request):
     function open profile page.
     """
     if request.user.is_authenticated() is True:
-        return render_to_response('profile.html', {'name': request.user.username})
+        return redirect('/profile/%s' % request.user.pk)
     return redirect('/')
-
-

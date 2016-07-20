@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/updates_style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+</head>
+<body>
+<div class="wrapper">
+	<header>
+		<ul class="nav">
+			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
+		</ul>
+		<nav class="user-nav">
+			<div class="dropdown-username">
+				<a class="user">
+					<ul>
+						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li><p>{{ name }}</p></li>
+						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
+					</ul>
+				</a>
+				<a href="/profile/{{ object.id }}/">Profile</a>
+				<a href="/profile/{{ object.id }}/updates/">Updates</a>
+				<a href="/profile/{{ object.id }}/settings/x">Settings</a>
+				<a href="/logout">Log out</a>
+			</div>
+		</nav>
+		<nav class="buzzer-nav">
+			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
+			<div class="dropdown-buzzer">
+				{% for change in four_changes%}
+					<a href="{{change.url}}">
+					<ul class="link-data">
+						<li>{{change.url}}</li>
+						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.url_project}}</li>
+						<li>{{change.publish}}</li>
+					</ul>
+					</a>
+				{% empty %}
+					<p>No changes yet</p>
+				{% endfor %}
+				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+			</div>
+		</nav>
+		<div class="invisible"></div>
+	</header>
+	<div class="content">
+		<div class="last-updates">
+			<h1>Last Updates</h1>
+			<ul>
+				<li>
+					{% for link in all_links %}
+						<a href="{{link.url}}">
+							<ul class="updates-data">
+								<li>{{link.url}}</li>
+								<li><img src="{% static 'image/Finish.svg' %}"></li>
+								<li>{{link.url_project}}</li>
+								<li>{{link.publish}}</li>
+							</ul>
+						</a>
+					{% empty %}
+						<p>No changes yet</p>
+					{% endfor %}
+				</li>
+			</ul>
+		</div>
+		<div class="adds">
+			
+		</div>
+	</div>
+	<footer>
+		<p class="copyright">&copy All rights reserved</p>
+		<a href="https://dataroot.co/" class="dataroot">dataroot.co</a>
+	</footer>
+</div>
+</body>
+</html>

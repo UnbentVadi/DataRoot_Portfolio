@@ -1,0 +1,90 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/project_style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+</head>
+<body>
+<div class="wrapper">
+	<header>
+		<ul class="nav">
+			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
+		</ul>
+		<nav class="user-nav">
+			<div class="dropdown-username">
+				<a class="user">
+					<ul>
+						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li><p>{{ name }}</p></li>
+						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
+					</ul>
+				</a>
+				<a href="/profile/{{ object.id }}/">Profile</a>
+				<a href="/profile/{{ object.id }}/updates/">Updates</a>
+				<a href="/profile/{{ object.id }}/settings/x">Settings</a>
+				<a href="/logout">Log out</a>
+			</div>
+		</nav>
+		<nav class="buzzer-nav">
+			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
+			<div class="dropdown-buzzer">
+				{% for change in four_changes%}
+					<a href="{{change.url}}">
+					<ul class="link-data">
+						<li>{{change.url}}</li>
+						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.url_project}}</li>
+						<li>{{change.publish}}</li>
+					</ul>
+					</a>
+				{% empty %}
+					<p>No changes yet</p>
+				{% endfor %}
+				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+			</div>
+		</nav>
+		<div class="invisible"></div>
+	</header>
+	<div class="content">
+		<div class="about-project">
+			<div class="project-block">
+				<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgiklLfpmzld5IL8q3mTjjvv2Cy2ONdEFfbdUjiGLXgrooyUVe" class="project-photo">
+				<p class="project-name">{{ project_name }}</p>
+				<ul>
+					<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
+					<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
+					<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
+				</ul>
+				<p class="creating-date">Created 13 Jun 2016</p>
+			</div>
+			<div class="link-list">
+				<h1>Посилання на сторінки</h1>
+				<ul>
+					<li>
+						{% for link in links%}
+							<a href="{{ link.url }}">
+								<ul class="link-info">
+									<li>{{link.url}}</li>
+									<li><img src="{% static 'image/Finish.svg' %}"></li>
+									<li>{{link.publish}}</li>
+								</ul>
+							</a>
+						{% empty %}
+							<p>No links yet</p>
+						{% endfor %}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<p class="copyright">&copy All rights reserved</p>
+		<a href="https://dataroot.co/" class="dataroot">dataroot.co</a>
+	</footer>
+</div>
+</body>
+</html>
+

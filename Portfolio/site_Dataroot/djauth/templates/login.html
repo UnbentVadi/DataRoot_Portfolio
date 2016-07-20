@@ -1,27 +1,58 @@
 <!DOCTYPE html>
-
 {% load staticfiles %}
-
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 </head>
 <body>
-	<div class ="columns">
-		<form action="/login/" method="post">
-		{% csrf_token %}
-		<label for="username">Username</label><br>
-		<input type="text" name="username" id="username"><br>
-		<label for="password">Password</label><br>
-		<input type="password" name="password" id="password"><br>
-		<input class="button" type="submit" value="Login"><br>
-		{% if login_error %}
-		<label class="error"> {{ login_error }}</label>
-		{% endif %}
-		</form>
-	</div>
+    <div id="header-first" class="header-first">
+    <div class ="columns">
+        <img src = "{% static 'images/logo.png'%}" id='logo' alt=''>
+        {% if login_error %}
+        <style>
+            #username {
+                border-bottom: 1px solid rgb(228, 76, 101);
+                background-image: url({% static 'images/head_pink.svg' %});
+                background-size: 17px;
+                background-position: 8.5px 7.2px;
+                color: rgb(228, 76, 101);
+            }
+        </style>
+        <label class="error"> {{ login_error }}</label>
+        {% elif password_error%}
+        <style>
+            #password {
+                border-bottom: 1px solid rgb(228, 76, 101);
+                background-image: url({% static 'images/lock_pink.svg' %});
+                background-size: 17px;
+                background-position: 8.5px 7.2px;
+                color: rgb(228, 76, 101);
+            }
+        </style>
+        <label class="error"> {{ password_error }}</label>
+        {% else %}
+        <label class="welcome">Welcome!</label>
+        {% endif %}
+        <form action="/login/" method="post">
+        {% csrf_token %}
+        <div class="field-user">
+        <input type="text" name="username" id="username" value="{{user}}" placeholder="Username">
+        </div>
+        <div class="field-password">
+        <input type="password" name="password" id="password" value="{{password}}" placeholder="Password">
+        </div>
+        <div class="field-button">
+        <input class="button" type="submit" value="Sign In">
+        </div>
+        </form>
+    </div>
+    <canvas id="demo-canvas"></canvas>
+    </div>
+    <script src="//www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/EasePack.min.js"></script>
+    <script src="//www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/rAF.js"></script>
+    <script src="//www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/TweenLite.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
-

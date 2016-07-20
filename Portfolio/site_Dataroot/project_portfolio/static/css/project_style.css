@@ -1,10 +1,37 @@
-body {
-  	background: #D4D8E1;
+@font-face {
+	font-family: Interstate;
+	src: url(fonts/Interstate.ttf);
+}
+
+@font-face {
+	font-family: PTsans;
+	src: url(fonts/PTsans.ttf);
+}
+
+@font-face {
+	font-family: Interstate-Regular;
+	src: url(fonts/Interstate-Regular.ttf);
+}
+
+html, body {
+	height: 100%;
+	background: #D4D8E1;
+	font-family: Interstate-Regular, Interstate, PTsans, Arial;
+}
+
+.wrapper {
+	min-height: 100%;
+	position: relative;
+}
+
+.content {
+	padding-bottom: 200px;
 }
 
 a {
 	outline: none;
 }
+
 
 /******* HEADER *******/
 
@@ -18,7 +45,7 @@ header {
 }
 
 .nav li {
-	border-right: 1px solid #000;
+	border-right: 1.5px solid #000;
 	float: left;
 }
 
@@ -28,12 +55,20 @@ header {
 	line-height: 50px;
 	padding: 0px 24px;
 	text-decoration: none;
-	transition: all .3s ease-in-out;
 	text-transform: uppercase;
+	font-size: 12px;
+	width: 75px;
+	text-align: center;
 }
 
-.profile, .updates:active {
+.profile:hover {
 	background: #DC870C;
+	color: #fff;
+}
+
+.updates {
+	background: #DC870C;
+	color: #fff;
 }
 
 .logo img {
@@ -47,22 +82,9 @@ header {
 	color: #FBFBFB;
 	position: absolute;
 	width: 168px;
-	right: 106px;
+	right: 50px;
 	z-index: 10;
 	background: #232D38;
-}
-
-.user-nav ul li a:not(.user) {
-	border-bottom: 1px solid #A5A7A9;
-	cursor: pointer;
-	display: block;
-	position: relative;
-	height: 27px;
-	line-height: 7px;
-	margin-bottom: 23px;
-	margin-left: 24px;
-	text-align: center;
-	width: 123px;
 }
 
 .user {
@@ -70,12 +92,21 @@ header {
 	display: block;
 	height: 50px;
 	text-align: center;
-	width: 123px;
-	padding-top: 18px;
-	padding-left: 33px; 
+	position: relative;
+}
+
+.user ul li {
+	float: left;
+	display: block;
+	position: relative;
 }
 
 .user-ava {
+	width: 38px;
+	height: 50px;
+}
+
+.user-ava img {
 	top: 12px;
 	left: 12px;
 	display: block;
@@ -86,39 +117,79 @@ header {
 	width: 26px;
 }
 
+.user p {
+	font-size: 16px;
+	height: 50px;
+	line-height: 50px;
+	margin-left: 10px;
+	max-width: 101px;
+}
+
 .dropdown-image {
-	width: 10px;
+	width: 29px;
+	height: 50px;
+}
+
+.dropdown-image img {
+	position: absolute;
+	width: 9px;
 	height: 9px;
-	transition: all .3s ease-in;
+	left: 10px;
+	top: 20.5px;
 }
 
 .dropdown-username {
 	width: 168px;
 	height: 50px;
 	overflow: hidden;
-	transition: all .3s ease-in-out;
+}
+
+.dropdown-username a:not(.user) {
+	border-bottom: 1px solid #A5A7A9;
+	font-size: 12px;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	height: 49px;
+	line-height: 48px;
+	margin-left: 24px;
+	text-align: center;
+	width: 123px;
+	text-decoration: none;
+	color: #EEEEEE;
+	text-transform: uppercase;
 }
 
 .dropdown-username:hover {
-	height: 218px;
+	height: 265px;
 	background: #0F161D;
+}
+
+.user-nav a:not(.user):hover {
+	background: #333333;
+	color: #fff;
 }
 
 .buzzer-nav {
 	float: right;
 	position: absolute;
 	height: 50px;
-	width: 106px;
+	width: 50px;
 	z-index: 9;
+	font-size: 14px;
 	overflow: hidden;
 	right: 0px;
-	transition: all .3s ease-in-out;
 }
 
 .buzzer-nav:hover {
 	width: 692px;
-	height: 315px;
+	height: 310px;
 	background: #0F161D;
+}
+
+.buzzer-nav a:not(.buzzer):hover {
+	background: #333333;
+	color: #fff;
 }
 
 .buzzer {
@@ -127,7 +198,7 @@ header {
 	height: 50px;
 	display: block;
 	position: absolute;
-	right: 56px;
+	right: 0px;
 	z-index: 9;
 }
 
@@ -135,21 +206,36 @@ header {
 	margin: 14px 12px;
 }
 
-.buzzer-nav ul li a {
+.dropdown-buzzer {
+	margin-top: 75px;
+}
+
+.dropdown-buzzer a:not(.view-all) {
+	width: 644px;
 	border-bottom: 1px solid #A5A7A9;
 	color: #FBFBFB;
 	display: block;
 	position: relative;
 	text-decoration: none;
-	height: 50px;
-	line-height: 7px;
+	height: 49px;
+	line-height: 48px;
 	cursor: pointer;
 	margin-left: 24px;
+	margin-right: 24px;
 }
 
-.dropdown-buzzer {
-	margin-top: 97px;
-	overflow: hidden;
+.view-all {
+	width: 644px;
+	color: #FBFBFB;
+	display: block;
+	text-decoration: none;
+	height: 35px;
+	line-height: 35px;
+	cursor: pointer;
+	margin-left: 24px;
+	margin-right: 24px;
+	text-align: center;
+	font-size: 16px;
 }
 
 .link-data {
@@ -164,47 +250,35 @@ header {
 }
 
 .link-data li:nth-child(1) {
-	top: 23px;
+	left: 10px;
 }
 
 .link-data li:nth-child(2) {
 	left: 204px;
-	bottom: 17px;
 }
 
 .link-data li:nth-child(3) {
-	left: 252px;
-	bottom: 21px;
+	left: 262px;
 }
 
 .link-data li:nth-child(4) {
-	right: 51px;
-	bottom: 21px;
+	right: 10px;
 }
 
-.invisible-1, .invisible-2{
+.invisible {
+	height: 50px;
+	width: 474px;
+	right: 218px;
 	z-index: 100;
 	background: #232D38;
 	position: absolute;
 }
 
-.invisible-1 {
-	height: 50px;
-	width: 56px;
-	right: 0px;
 
-}
-
-.invisible-2 {
-	height: 50px;
-	width: 418px;
-	right: 274px;
-}
+/*******ABOUT-PROJECT*******/
 
 
-/*******CONTENT*******/
-
-.content {
+.about-project {
 	height: 1000px;
 	position: relative;
 	background: #fff;
@@ -230,7 +304,8 @@ header {
 	border-bottom: 1px solid #E3E3E3;
 	line-height: 56px;
 	position: relative;
-	text-indent: 24px;	
+	text-indent: 24px;
+	font-size: 26px;
 }
 
 .count {
@@ -253,6 +328,7 @@ header {
 	top: 38px;
 	color: #C1C3C4;
 	text-align: center;
+	font-size: 16px;
 }
 
 .link-list {
@@ -272,6 +348,8 @@ header {
 	padding-right: 3px;
 	top: 73px;
 	height: 35px;
+	font-weight: normal;
+	font-size: 26px;
 }
 
 .link-list ul li a {
@@ -282,6 +360,7 @@ header {
 	text-decoration: none;
 	height: 56px;
 	cursor: pointer;
+	font-size: 18px;
 }
 
 .link-list ul {
@@ -289,55 +368,50 @@ header {
 	overflow: hidden;
 }
 
-.link-data li {
+.link-info li {
 	position: absolute;
 	display: block;
 }
 
-.link-data li:nth-child(1) {
+.link-info li:nth-child(1) {
 	top: 21px;
 	left: 7px;
 }
 
-.link-data li:nth-child(2) {
+.link-info li:nth-child(2) {
 	top: 21px;
 	left: 275px;
 }
 
-.link-data li:nth-child(3) {
+.link-info li:nth-child(3) {
 	top: 21px;
-	left: 1070px;
-	color: #D1D3D4
+	left: 1020px;/**!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**/
+	color: #D1D3D4;
 }
-
-
-
-
-
 
 
 /*******FOOTER*******/
 
 
-.for-footer {
-	min-height: calc(100vh - 530px);
-}
-
 footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
 	height: 50px;
 	width: 100%;
 	background: #303A44;
 }
 
 .copyright {
-	padding: 18px 18px 18px 75px;
+	padding-top: 25px;
+	padding-left: 75px;
 	color: #ECECEC;
+	font-size: 16px;
 }
 
 .dataroot {
     float: right;
     color: #ECECEC;
-    margin-top: -53px;
-    margin-right: 50px;
-    padding-top: 18px;
+    padding-right: 50px;
+    text-decoration: none;
 }
