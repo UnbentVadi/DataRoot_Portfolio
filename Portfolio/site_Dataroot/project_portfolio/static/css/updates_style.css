@@ -151,7 +151,7 @@ header {
 	display: block;
 	position: relative;
 	height: 49px;
-	line-height: 48px;
+	line-height: 49px;
 	margin-left: 24px;
 	text-align: center;
 	width: 123px;
@@ -192,6 +192,10 @@ header {
 	color: #fff;
 }
 
+.buzzer-nav a:not(.buzzer):hover .link-data li:nth-child(1) {
+	left: 25px;
+}
+
 .buzzer {
 	width: 50px;
 	cursor: pointer;
@@ -218,7 +222,7 @@ header {
 	position: relative;
 	text-decoration: none;
 	height: 49px;
-	line-height: 48px;
+	line-height: 49px;
 	cursor: pointer;
 	margin-left: 24px;
 	margin-right: 24px;
@@ -279,12 +283,13 @@ header {
 
 
 .last-updates {
-	width: 69%;
+	display: inline-block;
+	width: 67%;
 	position: relative;
-	height: 930px;
+	height: 910px;
 	background: #fff;
-	margin-left: 176px;
-	margin-top: 75px;
+	left: 9%;
+	top: 75px;
 	border-radius: 6px;
 }
 
@@ -292,8 +297,8 @@ header {
 	position: absolute;
 	color: #000;
 	border-bottom: 1px solid #231F20;
-	padding-left: 2px;
-	padding-right: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
 	left: 66px;
 	top: 54px;
 	height: 24px;
@@ -301,27 +306,32 @@ header {
 	font-weight: normal;
 }
 
-.last-updates ul li a {
+.links-list {
+	position: relative;
+	top: 104px;
+	overflow: hidden;
+}
+
+.links-list a {
 	border-bottom: 1px solid #A5A7A9;
 	color: #231F20;
 	display: block;
 	position: relative;
 	text-decoration: none;
-	height: 50px;
-	line-height: 7px;
+	height: 49px;
+	line-height: 49px;
 	cursor: pointer;
-	margin-left: 66px;
-	margin-right: 64px;
+	margin-left: 65px;
+	margin-right: 65px;
 	font-size: 18px;
 }
 
-.last-updates ul li a:hover {
+.links-list a:hover {
 	background: #ddd;
 }
 
-.last-updates ul {
-	padding-top: 104px;
-	overflow: hidden;
+.links-list a:hover .updates-data li:nth-child(1) {
+	left: 25px;
 }
 
 .updates-data li {
@@ -330,28 +340,76 @@ header {
 }
 
 .updates-data li:nth-child(1) {
-	top: 23px;
+	left: 10px;
 }
 
 .updates-data li:nth-child(2) {
 	left: 270px;
-	bottom: 17px;
 }
 
 .updates-data li:nth-child(3) {
 	left: 500px;
-	bottom: 21px;
 	color: #414042;
 }
 
 .updates-data li:nth-child(4) {
-	right: 8px;
-	bottom: 21px;
+	right: 10px;
 	color: #D1D3D4;
 }
 
 .adds {
-	
+	height: 910px;
+	width: 16%;
+	float: right;
+	top: 75px;
+	right: 7.3%;
+	position: relative;	
+	background: #fff;
+	border-radius: 6px;
+}
+
+.adds h1 {
+	position: absolute;
+	color: #000;
+	border-bottom: 1px solid #231F20;
+	padding-left: 4px;
+	padding-right: 4px;
+	left: 50px;
+	top: 54px;
+	height: 24px;
+	font-size: 26px;
+	font-weight: normal;
+}
+
+.calendar-block {
+	position: relative;
+	text-align: center;
+	top: 180px;
+	width: 100%;
+	background: #F1F2F2;
+	height: 300px;
+	z-index: 100;
+	font-size: 16px;
+}
+
+#calendar-container {
+	outline: 3px solid #A6A8AB;
+	position: relative;
+	top: 45px;
+	left: 10%;
+	width: 80%;
+}
+
+#calendar-header {
+	height: 35px;
+	line-height: 35px;
+}
+
+#calendar-dates>table>tr>td{
+    width: 35px;
+    height: 25px;
+    line-height: 25px;
+    outline: 1.5px solid #A6A8AB;
 }
 
 

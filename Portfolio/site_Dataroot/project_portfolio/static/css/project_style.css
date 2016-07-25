@@ -192,6 +192,10 @@ header {
 	color: #fff;
 }
 
+.buzzer-nav a:not(.buzzer):hover .link-data li:nth-child(1) {
+	left: 25px;
+}
+
 .buzzer {
 	width: 50px;
 	cursor: pointer;
@@ -218,7 +222,7 @@ header {
 	position: relative;
 	text-decoration: none;
 	height: 49px;
-	line-height: 48px;
+	line-height: 49px;
 	cursor: pointer;
 	margin-left: 24px;
 	margin-right: 24px;
@@ -278,6 +282,25 @@ header {
 /*******ABOUT-PROJECT*******/
 
 
+#graph-area {
+	top: 0px;
+	left: 375px;
+	position: absolute;
+	width: 600px;
+	height: 400px;
+	z-index: 5;
+}
+
+
+#graph-circle {
+	top: 0px;
+	right: 0px;
+	width: 500px;
+	height: 400px;
+	position: absolute;
+	z-index: 5;
+}
+
 .about-project {
 	height: 1000px;
 	position: relative;
@@ -331,7 +354,7 @@ header {
 	font-size: 16px;
 }
 
-.link-list {
+.links-block {
 	height: 100%;
 	width: calc(100% - 363px);
 	position: absolute;
@@ -340,32 +363,41 @@ header {
 	right: 0px;
 }
 
-.link-list h1 {
+.links-block h1 {
 	position: absolute;
 	color: #000;
 	border-bottom: 1px solid #231F20;
 	padding-left: 7px;
 	padding-right: 3px;
-	top: 73px;
+	top: 450px;
 	height: 35px;
 	font-weight: normal;
 	font-size: 26px;
 }
 
-.link-list ul li a {
+.links-list {
+	position: relative;
+	top: 500px;
+}
+
+.links-list  a {
 	border-bottom: 1px solid #A5A7A9;
 	color: #231F20;
 	display: block;
 	position: relative;
 	text-decoration: none;
-	height: 56px;
+	line-height: 50px;
+	height: 50px;
 	cursor: pointer;
 	font-size: 18px;
 }
 
-.link-list ul {
-	padding-top: 123px;
-	overflow: hidden;
+.links-list a:hover {
+	background: #ddd;
+}
+
+.links-list a:hover .link-info li:nth-child(1) {
+	left: 25px;
 }
 
 .link-info li {
@@ -374,18 +406,15 @@ header {
 }
 
 .link-info li:nth-child(1) {
-	top: 21px;
-	left: 7px;
+	left: 10px;
 }
 
 .link-info li:nth-child(2) {
-	top: 21px;
 	left: 275px;
 }
 
 .link-info li:nth-child(3) {
-	top: 21px;
-	left: 1020px;/**!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**/
+	right: 10px;
 	color: #D1D3D4;
 }
 

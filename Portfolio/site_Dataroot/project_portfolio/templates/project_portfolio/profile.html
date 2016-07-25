@@ -27,7 +27,7 @@
 				</a>
 				<a href="/profile/{{ object.id }}/">Profile</a>
 				<a href="/profile/{{ object.id }}/updates/">Updates</a>
-				<a href="/profile/{{ object.id }}/settings/x">Settings</a>
+				<a href="/profile/{{ object.id }}/settings/">Settings</a>
 				<a href="/logout">Log out</a>
 			</div>
 		</nav>
@@ -79,22 +79,20 @@
 		</div>
 		<div class="last-update">
 			<h1>Last Update</h1>
-			<ul>
-				<li>
-					{% for change in five_changes%}
-						<a href="{{change.url}}">
-							<ul class="updates-data">
-								<li>{{change.url}}</li>
-								<li><img src="{% static 'image/Finish.svg' %}"></li>
-								<li>{{change.url_project}}</li>
-								<li>{{change.publish}}</li>
-							</ul>
-						</a>
-					{% empty %}
-						<p>No changes yet</p>
-					{% endfor %}
-				</li>
-			</ul>
+			<div class="links-list">
+				{% for change in five_changes%}
+					<a href="{{change.url}}">
+						<ul class="updates-data">
+							<li>{{change.url}}</li>
+							<li><img src="{% static 'image/Finish.svg' %}"></li>
+							<li>{{change.url_project}}</li>
+							<li>{{change.publish}}</li>
+						</ul>
+					</a>
+				{% empty %}
+					<p>No changes yet</p>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 	<footer>

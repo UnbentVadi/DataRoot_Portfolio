@@ -11,13 +11,13 @@ def sort_links(links_list):
 		for j in range(len(links_list[i])):
 			sort_changes.append(links_list[i][j])
 	sort_changes = sorted(sort_changes, key=lambda x: x.publish, reverse=True)
-	return sort_changes # [<Link: one more link>, <Link: another link>, <Link: somth>, <Link: new link>, <Link: Link2>, <Link: Link1>]
+	return sort_changes
 
 
 class MyUserDetailView(DetailView):
 	"""
-	Accepts the request for showing profile page 
-	and provides the context of the myuser_detail.html file
+	Accepts the request for showing profile, updates or settings page 
+	and provides the context of their html file
 	"""
 	model = MyUser
 
@@ -28,22 +28,21 @@ class MyUserDetailView(DetailView):
 		user = MyUser.objects.get(pk=self.kwargs["pk"])
 		context["name"] = user
 		user_projects = user.projects_set.all()
-		context["projects_count"] = len(user_projects)# [<Projects: Project1>, <Projects: Project2>, <Projects: Project(first_user)>]
+		context["projects_count"] = len(user_projects)
 		changes = []
 		for i in range(len(user_projects)):
 			project_links = Link.objects.filter(url_project = user_projects[i])
-			changes.append(project_links) # [[<Link: Link1>, <Link: another link>, <Link: one more link>], [<Link: Link2>, <Link: somth>], [<Link: new link>]]
-		all_links = Link.objects.all()[:15]
-		context["all_links"] = sorted(all_links, key=lambda x: x.publish, reverse=True)
-		context["five_changes"]= sort_links(changes)[:5] # {'changes': [<Link: one more link>, <Link: another link>, <Link: somth>, <Link: new link>, <Link: Link2>, <Link: Link1>]}
-		context["four_changes"]= sort_links(changes)[:4]
+			changes.append(project_links) 
+		context["all_links"] = sort_links(changes)[:15]
+		context["four_changes"] = sort_links(changes)[:4]
+		context["five_changes"]= sort_links(changes)[:5]
 		return context
 
 
 class LinkDeatailView(MyUserDetailView):
 	"""
-	Accepts the request for showing list of urls of some project 
-	and provides the context of the links_list.html file
+	Accepts the request for showing project page
+	and provides the context of the project.html file
 	"""
 	model = Link
 
