@@ -1,1 +1,115 @@
-Good Job
+{% load staticfiles %}
+{% if request.user.pk == object.id %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/settings_style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+	<header>
+		<ul class="nav">
+			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
+		</ul>
+		<nav class="user-nav">
+			<div class="dropdown-username">
+				<a class="user">
+					<ul>
+						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li><p>{{ name }}</p></li>
+						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
+					</ul>
+				</a>
+				<a href="/profile/{{ object.id }}/">Profile</a>
+				<a href="/profile/{{ object.id }}/updates/">Updates</a>
+				<a href="/profile/{{ object.id }}/settings/">Settings</a>
+				<a href="/logout">Log out</a>
+			</div>
+		</nav>
+		<nav class="buzzer-nav">
+			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
+			<div class="dropdown-buzzer">
+				{% for change in four_changes%}
+					<a href="{% url 'iframe' pk=change.pk %}">
+					<ul class="link-data">
+						<li>{{change.url}}</li>
+						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.url_project}}</li>
+						<li>{{change.publish}}</li>
+					</ul>
+					</a>
+				{% empty %}
+					<p>No changes yet</p>
+				{% endfor %}
+				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+			</div>
+		</nav>
+		<div class="invisible"></div>
+	</header>
+	<div class="content">
+		<div class="user-data">
+			<img class="ava" src="{% static 'image/head.svg' %}">
+			<div class="upload_photo"><p class="upload">Upload Photo</p></div>
+			<p class="settings_profile">Settings</p>
+			<form action="/profile/{{ object.id }}/edit/" method="POST">
+			{% csrf_token %}
+			{% for f in form %}
+			{{ f }}
+			<label>{{ f.errors }}</label>
+			{% endfor %}
+			<div id="pen_one" class="id_username"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
+			<div id="pen_second" class="id_email"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
+			<input type="submit" value="Save" class="button_save">
+			</form>
+			<p class="joined">Joined on 13 Jun 2016</p>
+			<div class="sign_out"><a href="/logout" class="out_text">Sign Out</a></div>
+		</div>
+		<div class="projects">       
+			<h1>Your Projects ({{ projects_count }})</h1>
+			{% for project in projects%}
+				<aside class="project-block">
+					<a href="/profile/{{ object.id }}/project/{{ project.id }}" class="project-link">
+						<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgiklLfpmzld5IL8q3mTjjvv2Cy2ONdEFfbdUjiGLXgrooyUVe" class="project-photo">
+					</a>
+					<div class="project-name">
+						<a href="/profile/{{ object.id }}/project/{{ project.id }}">{{project.name}}</a>
+						<div class="point"></div>
+					</div>
+					<ul>
+						<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
+						<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
+						<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
+					</ul>
+				</aside>
+			{%endfor%}
+		</div>
+	</div>
+	<footer>
+		<p class="copyright">&copy All rights reserved</p>
+		<a href="https://dataroot.co/" class="dataroot">dataroot.co</a>
+	</footer>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.pencil').click(function(){
+				$(this).css({'display': 'none'});
+				$('.button_save').css({'display': 'block'});
+				var view = $('')
+				$('input').attr("disabled",false);
+			});
+		});
+	</script>
+</div>
+</body>
+</html>
+{% else %}
+<p>{{ project_name.id }}</p>
+<p>{{ projects_count }}</p>
+
+<p>NOT ACCEPTED</p>
+{% endif %}

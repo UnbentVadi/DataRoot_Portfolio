@@ -24,10 +24,6 @@ html, body {
 	position: relative;
 }
 
-.content {
-	padding-bottom: 200px;
-}
-
 a {
 	outline: none;
 }
@@ -61,12 +57,12 @@ header {
 	text-align: center;
 }
 
-.updates:hover {
+.profile:hover {
 	background: #DC870C;
 	color: #fff;
 }
 
-.profile {
+.updates {
 	background: #DC870C;
 	color: #fff;
 }
@@ -151,7 +147,7 @@ header {
 	display: block;
 	position: relative;
 	height: 49px;
-	line-height: 49px;
+	line-height: 48px;
 	margin-left: 24px;
 	text-align: center;
 	width: 123px;
@@ -190,10 +186,6 @@ header {
 .buzzer-nav a:not(.buzzer):hover {
 	background: #333333;
 	color: #fff;
-}
-
-.buzzer-nav a:not(.buzzer):hover .link-data li:nth-child(1) {
-	left: 25px;
 }
 
 .buzzer {
@@ -279,46 +271,178 @@ header {
 }
 
 
-/*******USER DATA********/
-
+/*******ABOUT-PROJECT*******/
 
 .user-data {
-	position: relative;
-	background: #FFFFFF;
-	height: 150px;
-	width: 100%;
-	z-index: 1;
+    position: relative;
+    background: #FFFFFF;
+    height: 390px;
+    width: 1000px;
+    z-index: 1;
+    margin: 100px 175px 100px;
 }
 
 .ava {
-	height: 112px;
-	width: 124.5px;
-	position: absolute;
-	top: 12.5px;
-	left: 175px;
-	background: #DADEE7;
+    height: 210px;
+    width: 207.5px;
+    position: absolute;
+    top: -20.5px;
+    left: 50px;
+    background: #DADEE7;
 }
 
-.username {
-	height: 30px;
-	width: 135px;
-	top: 25px;
-	left: 330px;
-	position: inherit;
-	line-height: 30px;
-	font-weight: bold;
-	color:#000;
-	text-transform: uppercase;
+#id_username {
+    height: 30px;
+    width: 110px;
+    top: 30px;
+    left: 330px;
+    position: relative;
+    line-height: 30px;
+    font-weight: 500;
+    background: url(../image/head1.svg) 6% 66% no-repeat;
+    background-size: 13% auto;
+    padding-left: 30px;
 }
 
-.mail {
-	height: 25px;
-	width: 200px;
-	top: 30px;
-	left: 330px;
-	position: inherit;
-	line-height: 25px;	
-	font-size: 14px;
+.button_save {
+    width: 155px;
+    height: 40px;
+    display: none;
+    position: relative;
+    background: #4ea745;
+    color: white;
+    border-radius: 5px;
+    left: 32.8%;
+    top: 130px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    text-indent: 0px;
+    border: none;
+}
+
+input {
+    background-repeat: no-repeat;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    outline: none;
+    text-indent: 5px;
+    font-size: 16px;
+    line-height: 30px;
+    padding-bottom: 2px;
+    letter-spacing: .5px;
+}
+
+form {
+    display: block;
+    height: 250px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.upload {
+    width: 100%;
+    text-align: center;
+    line-height: 35px;
+    color: white;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.upload::before {
+    background-image: url(../image/camera_Setings.png);
+    content: "";
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    left: -13px;
+    top: 6px;
+
+}
+
+.sign_out {
+    display: block;
+    height: 45px;
+    width: 150px;
+    background-color: #232D38;
+    position: relative;
+    left: 78%;
+    top: -316px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.out_text {
+    line-height: 45px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+}
+
+.upload_photo {
+    display: block;
+    width: 200px;
+    height: 35px;
+    position: relative;
+    top: 197px;
+    left: 54px;
+    background-color: #232D38;
+    cursor: pointer;
+	border-radius: 5px;
+}
+
+#pen_one {
+    position: absolute;
+    left: 473px;
+    top: 112px;
+}
+
+.pencil {
+    width: 17px;
+    height: auto;
+    cursor: pointer;
+}
+
+#pen_second {
+    position: absolute;
+    left: 535px;
+    top: 154px;
+}
+
+.settings_profile {
+    border-bottom: 1px solid #A5A7A9;
+    position: relative;
+    left: 330px;
+    top: 5px;
+    width: 130px;
+    line-height: 35px;
+    font-size: 20px;
+}
+
+#id_email {
+    height: 25px;
+    width: 168px;
+    top: 75px;
+    left: 184px;
+    position: relative;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    background: url(../image/mail_Setings.png) 4% 66% no-repeat;
+    background-size: 10% auto;
+    padding-left: 35px;
 }
 
 .mail a {
@@ -327,11 +451,15 @@ header {
 }
 
 .joined {
-	position: inherit;
-	left: 330px;
-	top: 55px;
-	width: 200px;
-	font-size: 14px;
+    position: inherit;
+    left: 50px;
+    top: -81px;
+    width: 208px;
+    font-size: 11px;
+    border-top: 1px solid #A5A7A9;
+    padding-top: 25px;
+    text-align: center;
+    font-style: italic;
 }
 
 
@@ -344,27 +472,27 @@ header {
 }
 
 .projects h1 {
-	position: absolute;
-	left: 176px;
-	top: 228px;
-	color: #000;
-	border-bottom: 1px solid #231F20;
-	padding-left: 2px;
-	height: 26px;
-	padding-right: 24px;
-	font-size: 26px;
-	font-weight: normal;
+    position: absolute;
+    left: 176px;
+    top: 600px;
+    color: #000;
+    border-bottom: 1px solid #231F20;
+    padding-left: 2px;
+    height: 26px;
+    padding-right: 24px;
+    font-size: 26px;
+    font-weight: normal;
 }
 
 .project-block {
-	height: 356px;
-	width: 240px;
-	background: #FFFFFF;
-	float: left;
-	position: relative;
-	top: 104px;
-	left: 176px;
-	margin-right: 40px;
+    height: 356px;
+    width: 240px;
+    background: #FFFFFF;
+    float: left;
+    position: relative;
+    top: 13px;
+    left: 176px;
+    margin-right: 40px;
 }
 
 .project-link {
@@ -475,80 +603,6 @@ header {
 	line-height: 49px;
 }
 
-
-/*******UPDATES*******/
-
-
-.last-update {
-	height: 410px;
-	margin: 0px 176px 0px 176px;
-	background: #FFFFFF;
-	position: relative;
-	border-radius: 4px;
-}
-
-.last-update h1 {
-	position: absolute;
-	color: #000;
-	border-bottom: 1px solid #231F20;
-	padding-left: 2px;
-	padding-right: 24px;
-	left: 66px;
-	top: 54px;
-	height: 24px;
-	font-size: 26px;
-	font-weight: normal;
-}
-
-.links-list a {
-	border-bottom: 1px solid #A5A7A9;
-	color: #231F20;
-	display: block;
-	position: relative;
-	text-decoration: none;
-	height: 49px;
-	line-height: 49px;
-	cursor: pointer;
-	margin-left: 66px;
-	margin-right: 64px;
-	font-size: 18px;
-}
-
-.links-list a:hover {
-	background: #ddd;
-}
-
-.links-list a:hover .updates-data li:nth-child(1) {
-	left: 25px;
-}
-
-.links-list {
-	padding-top: 104px;
-	overflow: hidden;
-}
-
-.updates-data li {
-	position: absolute;
-	display: block;
-}
-
-.updates-data li:nth-child(1) {
-	left: 10px;
-}
-
-.updates-data li:nth-child(2) {
-	left: 270px;
-}
-
-.updates-data li:nth-child(3) {
-	left: 500px;
-	color: #414042;
-}
-
-.updates-data li:nth-child(4) {
-	right: 10px;
-	color: #D1D3D4;
-}
 
 
 /*******FOOTER*******/

@@ -1,6 +1,10 @@
 from project_portfolio.models import MyUser, Projects, Link
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from project_portfolio.forms import ProfileForm
+from django.contrib.auth.decorators import login_required
+from django.core.context_processors import csrf
 
 def sort_links(links_list):
 	"""
@@ -11,7 +15,7 @@ def sort_links(links_list):
 		for j in range(len(links_list[i])):
 			sort_changes.append(links_list[i][j])
 	sort_changes = sorted(sort_changes, key=lambda x: x.publish, reverse=True)
-	return sort_changes # [<Link: one more link>, <Link: another link>, <Link: somth>, <Link: new link>, <Link: Link2>, <Link: Link1>]
+	return sort_changes 
 
 
 class MyUserDetailView(DetailView):
@@ -22,21 +26,23 @@ class MyUserDetailView(DetailView):
 	model = MyUser
 
 	def get_context_data(self,**kwargs):
+		profile_form = ProfileForm
 		context = super(MyUserDetailView, self).get_context_data(**kwargs)
+		context.update(csrf(self.request))
 		project_company = self.kwargs["pk"]
 		context["projects"] = Projects.objects.filter(project_company = project_company)
 		user = MyUser.objects.get(pk=self.kwargs["pk"])
 		context["name"] = user
 		user_projects = user.projects_set.all()
-		context["projects_count"] = len(user_projects)# [<Projects: Project1>, <Projects: Project2>, <Projects: Project(first_user)>]
+		context["projects_count"] = len(user_projects)
 		changes = []
 		for i in range(len(user_projects)):
 			project_links = Link.objects.filter(url_project = user_projects[i])
-			changes.append(project_links) # [[<Link: Link1>, <Link: another link>, <Link: one more link>], [<Link: Link2>, <Link: somth>], [<Link: new link>]]
-		all_links = Link.objects.all()[:15]
-		context["all_links"] = sorted(all_links, key=lambda x: x.publish, reverse=True)
-		context["five_changes"]= sort_links(changes)[:5] # {'changes': [<Link: one more link>, <Link: another link>, <Link: somth>, <Link: new link>, <Link: Link2>, <Link: Link1>]}
-		context["four_changes"]= sort_links(changes)[:4]
+			changes.append(project_links) 
+		context["all_links"] = sort_links(changes)[:15]
+		context["four_changes"] = sort_links(changes)[:4]
+		context["five_changes"]= sort_links(changes)[:5]
+		context["form"] = profile_form(instance=user)
 		return context
 
 
@@ -53,3 +59,23 @@ class LinkDeatailView(MyUserDetailView):
 		context["project_name"] = Projects.objects.get(id = url_project_id)
 		context["links"] = Link.objects.filter(url_project_id = url_project_id)
 		return context
+
+def iframe_page(request, pk):
+	link = get_object_or_404(Link, pk=pk)
+	return render(request, "project_portfolio/modal_window.html", {'link':link})
+
+@login_required
+def EditProfile(request, pk):
+	if request.POST:
+		user = request.user
+		userform = ProfileForm(request.POST or None, instance = user)
+		args = {}
+		if userform.is_valid():
+			userform.save()
+			return redirect('/profile/%s/settings' % pk)
+		else:
+			args["error"] = "Error enter"
+	else:
+		userform = ProfileForm()
+	return redirect('/profile/%s/settings' % pk)
+

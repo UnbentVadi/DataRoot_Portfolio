@@ -1,19 +1,65 @@
-{% extends 'urls_list.html' %}
-{% block modal_list %}
-<div id="modal_form">
-	<div class="preview_header">
-		<div class="preview_envato-logo">
-    		<a href="#"><img src="{% static 'image/logo.png' %}"></a>
-  		</div>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}">
+    <script type="text/javascript" src="{% static 'js/iframe.js' %}"></script>
+</head>
+<body>
+    <div class="toolbar">
+        <ul class="menu">
+            <li><img src="{% static 'image/menu-lines.svg' %}" class="menu_profile"></li>
+            <li class="profile"><a href="/profile/{{user.id}}">PROFILE</a></li>
+            <li class="updates"><a href="#">UPDATES</a></li>
+        </ul>
+        <ul id="devices">
+            <li class="response active" id="autosize"><img src="{% static 'image/lines.svg' %}" title="Auto Size" id="autosize_img"></li>
+            <li  class="response" id="tv"><img src="{% static 'image/screen.svg' %}" title="HDTV 1080p" id="tv_img"></li>
+            <li class="response" id="widescreen"><img src="{% static 'image/display1.svg' %}" title="Widescreen"  id="widescreen_img" ></li>
+            <li class="response" id="ipad_screen"><img src="{% static 'image/ipad.png' %}" title="Tablet (e.g. Apple iPad 2-3rd, mini)" id="ipad_screen_img"></li>
+            <li class="response" id="iphone_screen"><img src="{% static 'image/icon.png' %}" title="Apple iPhone 5" id="iphone_screen_img"></li>
+            <li class="response" id="mobile"><img src="{% static 'image/smartphone.png' %}" title="Mobile (e.g. Apple iPhone)" id="mobile_img"></li>
+        </ul>
+        <div class="size">
+            <p class="size_value">Auto size: <span class="status_width">1288</span>x<span class="status_height">671</span></p>
+        </div>
+        <div class="animate">
+            <p class="animate_size">Animate</p>
+        </div>
+        <div class="out">
+            <a href=""><img src="{% static 'image/exit.svg' %}" class="close_out"></a>
+        </div>
     </div>
-    <iframe class="menu" src="" frameborder="0" scrolling="yes" width="100%" height="100%">
-    </iframe>
-    <div id="modal_close">
-    	<p>X</p>
+    <div class="sidebar">
+        <ul>
+            <li><img src="{% static 'image/exit.svg' %}" class="close"></li>
+            <li><a class="golovna">Header page</a><b class="loading"></b></li>
+            <li><a class="profile_one">Profile</a><b class="loading"></b></li>
+            <li><a class="settings">Settings</a><b class="loading"></b></li>
+            <li><a class="search">Search</a><b class="loading"></b></li>
+        </ul>
     </div>
-</div>
-<div id="overlay">
-</div>
-{% endblock %}
+    <div class="" id="content">
+        <div class="phantom_view"><div id="phantom"></div></div>
+        <div id="wrapper" class="autosize">
+            <b class="" id="e"></b>
+            <b class="" id="s"></b>
+            <b class="" id="se"></b>
+            <div class="" id="l"></div>
+            <div class="" id="t"></div>
+            <iframe sandbox="allow-same-origin" src="{{link.url}}" scrolling="yes" frameborder="0" height="100%" width="100%" class="menu" allowfullscreen>
+            </iframe>
+            <div class="iframe_back"></div>
+        </div>
+    </div>      
+</body>
+</html>
+
+</body>
+</html>
 
 

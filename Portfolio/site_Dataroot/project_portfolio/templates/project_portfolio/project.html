@@ -1,9 +1,12 @@
 {% load staticfiles %}
+{% if request.user.pk == object.id %}
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/project_style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="{% static 'js/graphs.js' %}"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -24,7 +27,7 @@
 				</a>
 				<a href="/profile/{{ object.id }}/">Profile</a>
 				<a href="/profile/{{ object.id }}/updates/">Updates</a>
-				<a href="/profile/{{ object.id }}/settings/x">Settings</a>
+				<a href="/profile/{{ object.id }}/settings/">Settings</a>
 				<a href="/logout">Log out</a>
 			</div>
 		</nav>
@@ -60,26 +63,25 @@
 				</ul>
 				<p class="creating-date">Created 13 Jun 2016</p>
 			</div>
-			<div class="link-list">
+			<div id="graph-area"></div>
+			<div id="graph-circle"></div>
+			<div class="links-block">
 				<h1>Посилання на сторінки</h1>
-				<ul>
-					<li>
-						{% for link in links%}
-							<a href="{{ link.url }}">
-								<ul class="link-info">
-									<li>{{link.url}}</li>
-									<li><img src="{% static 'image/Finish.svg' %}"></li>
-									<li>{{link.publish}}</li>
-								</ul>
-							</a>
-						{% empty %}
-							<p>No links yet</p>
-						{% endfor %}
-					</li>
-				</ul>
+				<div class="links-list">
+					{% for link in links%}
+						<a href="{{ link.url }}">
+							<ul class="link-info">
+								<li>{{link.url}}</li>
+								<li><img src="{% static 'image/Finish.svg' %}"></li>
+								<li>{{link.publish}}</li>
+							</ul>
+						</a>
+					{% empty %}
+						<p>No links yet</p>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
-	</div>
 	<footer>
 		<p class="copyright">&copy All rights reserved</p>
 		<a href="https://dataroot.co/" class="dataroot">dataroot.co</a>
@@ -87,4 +89,6 @@
 </div>
 </body>
 </html>
-
+{% else %}
+<p>NOT ACCEPTED</p>
+{% endif %}

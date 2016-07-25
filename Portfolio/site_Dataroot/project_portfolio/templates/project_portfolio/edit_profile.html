@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/profile_style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/settings_style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
-	<script>
-		document.createElement('aside');
-	</script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -55,9 +55,23 @@
 	<div class="content">
 		<div class="user-data">
 			<img class="ava" src="{% static 'image/head.svg' %}">
-			<p class="username">{{ object.username }}</p>
-			<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
+			<div class="upload_photo"><p class="upload">Upload Photo</p></div>
+			<p class="settings_profile">Settings</p>
+			<form action="/profile/{{ object.id }}/edit/" method="POST">
+			{% if error %}
+			<label>{{error}}</label>
+			{% endif %}
+			{% csrf_token %}
+			{% for f in form %}
+			{{ f }}
+			{{ f.errors }}
+			{% endfor %}
+			<div id="pen_one" class="id_username"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
+			<div id="pen_second" class="id_email"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
+			<input type="submit" value="Save" class="button_save">
+			</form>
 			<p class="joined">Joined on 13 Jun 2016</p>
+			<div class="sign_out"><a href="/logout" class="out_text">Sign Out</a></div>
 		</div>
 		<div class="projects">       
 			<h1>Your Projects ({{ projects_count }})</h1>
@@ -78,31 +92,27 @@
 				</aside>
 			{%endfor%}
 		</div>
-		<div class="last-update">
-			<h1>Last Update</h1>
-			<div class="links-list">
-				{% for change in five_changes%}
-					<a href="{{change.url}}">
-						<ul class="updates-data">
-							<li>{{change.url}}</li>
-							<li><img src="{% static 'image/Finish.svg' %}"></li>
-							<li>{{change.url_project}}</li>
-							<li>{{change.publish}}</li>
-						</ul>
-					</a>
-				{% empty %}
-					<p>No changes yet</p>
-				{% endfor %}
-			</div>
-		</div>
 	</div>
 	<footer>
 		<p class="copyright">&copy All rights reserved</p>
 		<a href="https://dataroot.co/" class="dataroot">dataroot.co</a>
 	</footer>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.pencil').click(function(){
+				$(this).css({'display': 'none'});
+				$('.button_save').css({'display': 'block'});
+				var view = $('')
+				$('input').attr("disabled",false);
+			});
+		});
+	</script>
 </div>
 </body>
 </html>
 {% else %}
+<p>{{ project_name.id }}</p>
+<p>{{ projects_count }}</p>
+
 <p>NOT ACCEPTED</p>
 {% endif %}

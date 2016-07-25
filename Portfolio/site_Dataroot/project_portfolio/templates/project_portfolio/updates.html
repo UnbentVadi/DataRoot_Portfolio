@@ -1,9 +1,11 @@
 {% load staticfiles %}
+{% if request.user.pk == object.id %}
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/updates_style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+	<script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -24,7 +26,7 @@
 				</a>
 				<a href="/profile/{{ object.id }}/">Profile</a>
 				<a href="/profile/{{ object.id }}/updates/">Updates</a>
-				<a href="/profile/{{ object.id }}/settings/x">Settings</a>
+				<a href="/profile/{{ object.id }}/settings/">Settings</a>
 				<a href="/logout">Log out</a>
 			</div>
 		</nav>
@@ -32,7 +34,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{{change.url}}">
+					<a href="{% url 'iframe' pk=change.pk %}">
 					<ul class="link-data">
 						<li>{{change.url}}</li>
 						<li><img src="{% static 'image/Finish.svg' %}"></li>
@@ -51,25 +53,31 @@
 	<div class="content">
 		<div class="last-updates">
 			<h1>Last Updates</h1>
-			<ul>
-				<li>
-					{% for link in all_links %}
-						<a href="{{link.url}}">
-							<ul class="updates-data">
-								<li>{{link.url}}</li>
-								<li><img src="{% static 'image/Finish.svg' %}"></li>
-								<li>{{link.url_project}}</li>
-								<li>{{link.publish}}</li>
-							</ul>
-						</a>
-					{% empty %}
-						<p>No changes yet</p>
-					{% endfor %}
-				</li>
-			</ul>
+			<div class="links-list">
+				{% for link in all_links %}
+					<a href="{% url 'iframe' pk=link.pk %}">
+						<ul class="updates-data">
+							<li>{{link.url}}</li>
+							<li><img src="{% static 'image/Finish.svg' %}"></li>
+							<li>{{link.url_project}}</li>
+							<li>{{link.publish}}</li>
+						</ul>
+					</a>
+				{% empty %}
+					<p>No changes yet</p>
+				{% endfor %}
+			</div>
 		</div>
 		<div class="adds">
-			
+			<h1>Last Updates</h1>
+			<div class="calendar-block">
+				<div id="calendar-container">
+					<div id="calendar-header">
+						<span id="calendar-month-year"></span>
+					</div>
+					<div id="calendar-dates"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<footer>
@@ -79,3 +87,7 @@
 </div>
 </body>
 </html>
+{% else %}
+<p>NOT ACCEPTED</p>
+{% endif %}
+
