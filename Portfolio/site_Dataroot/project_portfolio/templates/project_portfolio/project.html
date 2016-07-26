@@ -35,7 +35,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{{change.url}}">
+					<a href="{% url 'iframe' pk=change.pk %}">
 					<ul class="link-data">
 						<li>{{change.url}}</li>
 						<li><img src="{% static 'image/Finish.svg' %}"></li>
@@ -69,7 +69,7 @@
 				<h1>Посилання на сторінки</h1>
 				<div class="links-list">
 					{% for link in links%}
-						<a href="{{ link.url }}">
+						<a href="{% url 'iframe' pk=link.pk %}">
 							<ul class="link-info">
 								<li>{{link.url}}</li>
 								<li><img src="{% static 'image/Finish.svg' %}"></li>
