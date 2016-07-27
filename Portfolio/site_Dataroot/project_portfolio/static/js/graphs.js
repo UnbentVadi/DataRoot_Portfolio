@@ -1,20 +1,25 @@
+
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
+
 function drawChart() {
+	var start = $('.start').text();
+	var finish = $('.finish').text()
+	var progress = $('.progress').text()
 
 	var data1 = google.visualization.arrayToDataTable([
 		['status', 'count'],
-		['Finish', 7],
-		['Processing', 7],
-		['New', 7],
+		['Finish', +start],
+		['Processing', +finish],
+		['New', +progress],
 	]);
 
 	var data2 = google.visualization.arrayToDataTable([
-			['month', 'count'],
-			['May', 2],
-			['June', 5],
-			['July', 4]
-		]);
+		['month', 'count'],
+		['May', 2],
+		['May', 5],
+		['July', 4]
+	]);
 
 	
 	var options1 = {
@@ -23,14 +28,14 @@ function drawChart() {
 		pieSliceBorderColor : 'none',
 		pieSliceTextStyle : {color: '#ccc', fontSize: 20},
 		tooltip : {trigger: 'none'},
-		chartArea : {top:"50",right: "200", width:'280', height:'280'}
+		chartArea : {top:"50",right: "10", width:'250', height:'280'}
 }
 
 	var options2 = {
 		legend: "none",
-		areaOpacity : "0.7",
+		areaOpacity : "1",
 		colors: ['#499E41'],
-		chartArea : {top:"50",  width:'480', height:'270'}
+		chartArea : {top:"50", left: '50', width:'250', height:'270'}
 	};
 
 	var chart1 = new google.visualization.PieChart(document.getElementById('graph-circle'));

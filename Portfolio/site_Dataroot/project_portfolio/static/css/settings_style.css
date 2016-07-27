@@ -57,13 +57,12 @@ header {
 	text-align: center;
 }
 
-.profile:hover {
+.profile:hover, .updates:hover {
 	background: #DC870C;
 	color: #fff;
 }
 
 .updates {
-	background: #DC870C;
 	color: #fff;
 }
 

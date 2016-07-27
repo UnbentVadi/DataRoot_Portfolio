@@ -284,9 +284,9 @@ header {
 
 #graph-area {
 	top: 0px;
-	left: 375px;
+	left: 300px;
 	position: absolute;
-	width: 600px;
+	width: 270px;
 	height: 400px;
 	z-index: 5;
 }
@@ -295,7 +295,7 @@ header {
 #graph-circle {
 	top: 0px;
 	right: 0px;
-	width: 500px;
+	width: 270px;
 	height: 400px;
 	position: absolute;
 	z-index: 5;

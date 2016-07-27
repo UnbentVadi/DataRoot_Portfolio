@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="{% static 'js/graphs.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -37,8 +38,8 @@
 				{% for change in four_changes%}
 					<a href="{% url 'iframe' pk=change.pk %}">
 					<ul class="link-data">
-						<li>{{change.url}}</li>
-						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.name_url}}</li>
+						<li><img src="{{ change.process }}"></li>
 						<li>{{change.url_project}}</li>
 						<li>{{change.publish}}</li>
 					</ul>
@@ -57,11 +58,12 @@
 				<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgiklLfpmzld5IL8q3mTjjvv2Cy2ONdEFfbdUjiGLXgrooyUVe" class="project-photo">
 				<p class="project-name">{{ project_name }}</p>
 				<ul>
-					<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
-					<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
-					<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
+					<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count start">{{ start|length }}</p></li>
+					<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count
+					finish">{{ finish|length }}</p></li>
+					<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count progress">{{ progress|length }}</p></li>
 				</ul>
-				<p class="creating-date">Created 13 Jun 2016</p>
+				<p class="creating-date">Created {{ user.date_joined|date:"d M Y" }}</p>
 			</div>
 			<div id="graph-area"></div>
 			<div id="graph-circle"></div>
@@ -71,8 +73,8 @@
 					{% for link in links%}
 						<a href="{% url 'iframe' pk=link.pk %}">
 							<ul class="link-info">
-								<li>{{link.url}}</li>
-								<li><img src="{% static 'image/Finish.svg' %}"></li>
+								<li>{{link.name_url}}</li>
+								<li><img src="{{ link.process }}"></li>
 								<li>{{link.publish}}</li>
 							</ul>
 						</a>

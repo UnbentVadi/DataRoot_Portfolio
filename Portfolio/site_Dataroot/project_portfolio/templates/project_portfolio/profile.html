@@ -38,8 +38,8 @@
 				{% for change in four_changes%}
 					<a href="{% url 'iframe' pk=change.pk %}">
 					<ul class="link-data">
-						<li>{{change.url}}</li>
-						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.name_url}}</li>
+						<li><img src="{{ change.process }}"></li>
 						<li>{{change.url_project}}</li>
 						<li>{{change.publish}}</li>
 					</ul>
@@ -57,7 +57,7 @@
 			<img class="ava" src="{% static 'image/head.svg' %}">
 			<p class="username">{{ object.username }}</p>
 			<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
-			<p class="joined">Joined on 13 Jun 2016</p>
+			<p class="joined">Joined on {{ object.date_joined|date:"d M Y" }}</p>
 		</div>
 		<div class="projects">       
 			<h1>Your Projects ({{ projects_count }})</h1>
@@ -71,9 +71,9 @@
 						<div class="point"></div>
 					</div>
 					<ul>
-						<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count">7</p></li>
-						<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">7</p></li>
-						<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
+						<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count start">{{ start|length }}</p></li>
+						<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">{{ finish|length }}</p></li>
+						<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">{{ progress|length }}</p></li>
 					</ul>
 				</aside>
 			{%endfor%}
@@ -84,8 +84,8 @@
 				{% for change in five_changes%}
 					<a href="{% url 'iframe' pk=change.pk %}">
 						<ul class="updates-data">
-							<li>{{change.url}}</li>
-							<li><img src="{% static 'image/Finish.svg' %}"></li>
+							<li>{{change.name_url}}</li>
+							<li><img src="{{ change.process }}"></li>
 							<li>{{change.url_project}}</li>
 							<li>{{change.publish}}</li>
 						</ul>

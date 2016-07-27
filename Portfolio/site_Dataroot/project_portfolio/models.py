@@ -28,9 +28,16 @@ class Link(models.Model):
     """
     Created models url list.
     """
+    Progress = '/static/image/in_progress.svg'
+    Finish = '/static/image/Finish.svg'
+    Start = '/static/image/pages.svg'
+    
+    name_url = models.CharField(verbose_name="Название ссылки", max_length=50, default=None) 
     url = models.TextField(verbose_name="Ссылка")
     publish = models.DateTimeField(blank=True, null=True, verbose_name="Дата и время") 
+    process = models.CharField(max_length=60,choices=((Progress,"В процессе разработке"),(Finish, "Готовая страница"),(Start,'Новая страница')), 
+        verbose_name = "Прогресс розработки", default=Start)
     url_project = models.ForeignKey(Projects)
 
     def __str__(self):
-        return self.url
+        return self.name_url

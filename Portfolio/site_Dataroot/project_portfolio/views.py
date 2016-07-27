@@ -17,7 +17,6 @@ def sort_links(links_list):
 	sort_changes = sorted(sort_changes, key=lambda x: x.publish, reverse=True)
 	return sort_changes 
 
-
 class MyUserDetailView(DetailView):
 	"""
 	Accepts the request for showing profile page 
@@ -43,6 +42,9 @@ class MyUserDetailView(DetailView):
 		context["four_changes"] = sort_links(changes)[:4]
 		context["five_changes"]= sort_links(changes)[:5]
 		context["form"] = profile_form(instance=user)
+		context['progress'] = Link.objects.filter(process = '/static/image/in_progress.svg')
+		context['finish'] = Link.objects.filter(process = '/static/image/Finish.svg')
+		context['start'] = Link.objects.filter(process = '/static/image/pages.svg')
 		return context
 
 

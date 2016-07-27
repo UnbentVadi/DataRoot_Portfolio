@@ -36,8 +36,8 @@
 				{% for change in four_changes%}
 					<a href="{% url 'iframe' pk=change.pk %}">
 					<ul class="link-data">
-						<li>{{change.url}}</li>
-						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.name_url}}</li>
+						<li><img src="{{ change.process }}"></li>
 						<li>{{change.url_project}}</li>
 						<li>{{change.publish}}</li>
 					</ul>
@@ -57,8 +57,8 @@
 				{% for link in all_links %}
 					<a href="{% url 'iframe' pk=link.pk %}">
 						<ul class="updates-data">
-							<li>{{link.url}}</li>
-							<li><img src="{% static 'image/Finish.svg' %}"></li>
+							<li>{{link.name_url}}</li>
+							<li><img src="{{ link.process }}"></li>
 							<li>{{link.url_project}}</li>
 							<li>{{link.publish}}</li>
 						</ul>

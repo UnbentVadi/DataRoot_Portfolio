@@ -38,8 +38,8 @@
 				{% for change in four_changes%}
 					<a href="{% url 'iframe' pk=change.pk %}">
 					<ul class="link-data">
-						<li>{{change.url}}</li>
-						<li><img src="{% static 'image/Finish.svg' %}"></li>
+						<li>{{change.name_url}}</li>
+						<li><img src="{{ change.process }}"></li>
 						<li>{{change.url_project}}</li>
 						<li>{{change.publish}}</li>
 					</ul>
@@ -61,13 +61,12 @@
 			{% csrf_token %}
 			{% for f in form %}
 			{{ f }}
-			<label>{{ f.errors }}</label>
 			{% endfor %}
 			<div id="pen_one" class="id_username"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
 			<div id="pen_second" class="id_email"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
 			<input type="submit" value="Save" class="button_save">
 			</form>
-			<p class="joined">Joined on 13 Jun 2016</p>
+			<p class="joined">Joined on {{ object.date_joined|date:"d M Y" }}</p>
 			<div class="sign_out"><a href="/logout" class="out_text">Sign Out</a></div>
 		</div>
 		<div class="projects">       
