@@ -1,0 +1,13 @@
+
+{% for link in links_finish %}
+	<a href="{% url 'iframe' pk=link.pk %}">
+		<ul class="updates-data">
+			<li>{{link.name_url}}</li>
+			<li><img src="{{ link.process }}"></li>
+			<li>{{link.url_project}}</li>
+			<li>{{link.publish}}</li>
+		</ul>
+	</a>
+{% empty %}
+	<p>No changes yet</p>
+{% endfor %}

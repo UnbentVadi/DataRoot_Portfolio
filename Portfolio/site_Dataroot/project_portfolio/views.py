@@ -15,6 +15,7 @@ def sort_links(links_list):
 		for j in range(len(links_list[i])):
 			sort_changes.append(links_list[i][j])
 	sort_changes = sorted(sort_changes, key=lambda x: x.publish, reverse=True)
+
 	return sort_changes 
 
 class MyUserDetailView(DetailView):
@@ -38,13 +39,14 @@ class MyUserDetailView(DetailView):
 		for i in range(len(user_projects)):
 			project_links = Link.objects.filter(url_project = user_projects[i])
 			changes.append(project_links) 
-		context["all_links"] = sort_links(changes)[:15]
+		all_links = sort_links(changes)
+		context['links_finish'] = [x for x in all_links if x.process == '/static/image/Finish.svg']
+		context['links_progress'] = [x for x in all_links if x.process == '/static/image/in_progress.svg']
+		context['links_new'] = [x for x in all_links if x.process == '/static/image/pages.svg']
 		context["four_changes"] = sort_links(changes)[:4]
 		context["five_changes"]= sort_links(changes)[:5]
 		context["form"] = profile_form(instance=user)
-		context['progress'] = Link.objects.filter(process = '/static/image/in_progress.svg')
-		context['finish'] = Link.objects.filter(process = '/static/image/Finish.svg')
-		context['start'] = Link.objects.filter(process = '/static/image/pages.svg')
+		context["all_links"] = all_links
 		return context
 
 
@@ -59,7 +61,12 @@ class LinkDeatailView(MyUserDetailView):
 		context = super(LinkDeatailView, self).get_context_data(**kwargs)
 		url_project_id = self.kwargs["projectname_id"]
 		context["project_name"] = Projects.objects.get(id = url_project_id)
-		context["links"] = Link.objects.filter(url_project_id = url_project_id)
+		r = Link.objects.filter(url_project_id = url_project_id)
+		print(type(r));
+		context['finish'] = r.filter(process = '/static/image/Finish.svg')
+		context['start'] = r.filter(process = '/static/image/pages.svg')
+		context['progress'] = r.filter(process = '/static/image/in_progress.svg')
+		context['links'] = r
 		return context
 
 def iframe_page(request, pk):

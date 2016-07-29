@@ -5,7 +5,10 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/updates_style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/process.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+	
 </head>
 <body>
 <div class="wrapper">
@@ -70,6 +73,13 @@
 		</div>
 		<div class="adds">
 			<h1>Last Updates</h1>
+			<div class="process">
+				<ul>
+					<li class="process_container"><a href="finish_pages/"><img class="finish_source" src="{% static 'image/Finish.svg' %}"></a></li>
+					<li class="process_container"><a href="progress_pages/"><img class="progress_source" src="{% static 'image/in_progress.svg' %}"></a></li>
+					<li class="process_container"><a href="new_pages/"><img class="progress_in" src="{% static 'image/in_progress.svg' %}"></a></li>
+				</ul>
+			</div>
 			<div class="calendar-block">
 				<div id="calendar-container">
 					<div id="calendar-header">

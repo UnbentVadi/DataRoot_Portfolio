@@ -70,13 +70,14 @@
 						<a href="/profile/{{ object.id }}/project/{{ project.id }}">{{project.name}}</a>
 						<div class="point"></div>
 					</div>
-					<ul>
-						<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count start">{{ start|length }}</p></li>
-						<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">{{ finish|length }}</p></li>
-						<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">{{ progress|length }}</p></li>
+					<ul>		
+						<li class="project-data"><img src="{% static 'image/pages.svg' %}"><p class="count start">{{ links_new|length }}</p></li>
+						<li class="project-data"><img src="{% static 'image/Finish.svg' %}"><p class="count">{{ links_finish|length }}</p></li>
+						<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">{{ links_progress|length }}</p></li>
 					</ul>
 				</aside>
-			{%endfor%}
+				{% endfor %}
+				
 		</div>
 		<div class="last-update">
 			<h1>Last Update</h1>

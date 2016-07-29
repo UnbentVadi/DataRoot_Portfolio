@@ -348,7 +348,7 @@ header {
 }
 
 .updates-data li:nth-child(3) {
-	left: 500px;
+	left: 400px;
 	color: #414042;
 }
 
@@ -382,14 +382,50 @@ header {
 }
 
 .calendar-block {
-	position: relative;
-	text-align: center;
-	top: 180px;
-	width: 100%;
-	background: #F1F2F2;
-	height: 300px;
-	z-index: 100;
-	font-size: 16px;
+    position: relative;
+    text-align: center;
+    top: 105px;
+    width: 100%;
+    background: #F1F2F2;
+    height: 300px;
+    z-index: 1;
+    font-size: 16px;
+}
+
+.process {
+    display: block;
+    position: relative;
+    height: 36px;
+    width: 100%;
+    top: 78px;
+}
+
+.process ul {
+    margin: 8% 16%;
+    width: 100%;
+    height: 100%;
+}
+
+.process_container {
+    display: inline-block;
+    margin-left: 6px;
+}
+
+.process ul li a {
+    width: 36px;
+    height: 36px;
+    display: block;
+    background: #F1F2F2;
+}
+
+.process ul li a img {
+    margin: 25%;
+    width: 18px;
+    height: 18px;
+}
+
+.progress_in {
+    opacity: 0.3;
 }
 
 #calendar-container {
