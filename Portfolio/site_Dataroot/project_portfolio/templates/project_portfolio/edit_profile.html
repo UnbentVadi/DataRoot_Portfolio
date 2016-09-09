@@ -36,7 +36,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{% url 'iframe' pk=change.pk %}">
+					<a href="{% url 'iframe' pk=change.pk id=user.id %}">
 					<ul class="link-data">
 						<li>{{change.url}}</li>
 						<li><img src="{% static 'image/Finish.svg' %}"></li>

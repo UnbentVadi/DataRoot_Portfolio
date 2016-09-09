@@ -14,7 +14,7 @@
         <ul class="menu">
             <li><img src="{% static 'image/menu-lines.svg' %}" class="menu_profile"></li>
             <li class="profile"><a href="/profile/{{user.id}}">PROFILE</a></li>
-            <li class="updates"><a href="#">UPDATES</a></li>
+            <li class="updates"><a href="/profile/{{user.id}}/updates">UPDATES</a></li>
         </ul>
         <ul id="devices">
             <li class="response active" id="autosize"><img src="{% static 'image/lines.svg' %}" title="Auto Size" id="autosize_img"></li>
@@ -27,20 +27,19 @@
         <div class="size">
             <p class="size_value">Auto size: <span class="status_width">1288</span>x<span class="status_height">671</span></p>
         </div>
-        <div class="animate">
-            <p class="animate_size">Animate</p>
-        </div>
         <div class="out">
-            <a href=""><img src="{% static 'image/exit.svg' %}" class="close_out"></a>
+            <a href="/profile/{{user.id}}/updates/" class="link_out"><img src="{% static 'image/exit.svg' %}" class="close_out"></a>
         </div>
     </div>
     <div class="sidebar">
         <ul>
-            <li><img src="{% static 'image/exit.svg' %}" class="close"></li>
-            <li><a class="golovna">Header page</a><b class="loading"></b></li>
-            <li><a class="profile_one">Profile</a><b class="loading"></b></li>
-            <li><a class="settings">Settings</a><b class="loading"></b></li>
-            <li><a class="search">Search</a><b class="loading"></b></li>
+            <li class='exit'><img src="{% static 'image/exit.svg' %}" class="close"></li>
+            {% for link in links %}
+            <li>
+                <a class="golovna" href="{% url 'iframe' pk=link.pk id=user.id  %}">{{link.name_url}}</a>
+                <b><img class="loading" src="{{link.process}}"></b>
+            </li>
+            {% endfor %}
         </ul>
     </div>
     <div class="" id="content">

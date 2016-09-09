@@ -13,15 +13,15 @@
 <div class="wrapper">
 	<header>
 		<ul class="nav">
-			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
-			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
-			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
+			<li><a href="/profile/{{ object.id }}/" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}/" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/updates/" class="updates">Updates</a></li>
 		</ul>
 		<nav class="user-nav">
 			<div class="dropdown-username">
 				<a class="user">
 					<ul>
-						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li class="user-ava"><img src="{{object.picture}}"></li>
 						<li><p>{{ name }}</p></li>
 						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
 					</ul>
@@ -36,7 +36,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{% url 'iframe' pk=change.pk %}">
+					<a href="{% url 'iframe' pk=change.pk id=user.id %}">
 					<ul class="link-data">
 						<li>{{change.name_url}}</li>
 						<li><img src="{{ change.process }}"></li>
@@ -47,21 +47,32 @@
 				{% empty %}
 					<p>No changes yet</p>
 				{% endfor %}
-				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+				<a href="/profile/{{ object.id }}/updates/" class="view-all">View all Updates</a>
 			</div>
 		</nav>
 		<div class="invisible"></div>
 	</header>
 	<div class="content">
+		<div class="boxes">
+			<div class="window">
+				<p class="new_photo">Loading new photo</p>
+				<form action="/profile/{{ object.id }}/settings/picture/" method="post" onsubmit="return formValidPicture();" id='picture_form'>
+				{% csrf_token %}
+				{{ picture_form.picture }}
+				<input type="submit" value="Save" class="button_save_picture">
+				<p class="cansel">Cansel</p>	
+				</form>
+			</div>
+			<div class="mask"></div>
+		</div>
 		<div class="user-data">
-			<img class="ava" src="{% static 'image/head.svg' %}">
+			<img class="ava" src="{{object.picture}}">
 			<div class="upload_photo"><p class="upload">Upload Photo</p></div>
 			<p class="settings_profile">Settings</p>
-			<form action="/profile/{{ object.id }}/edit/" method="POST">
-			{% csrf_token %}
-			{% for f in form %}
-			{{ f }}
-			{% endfor %}
+			<form action="/profile/{{ object.id }}/updated/" method="POST" onsubmit="return FormValid();" id="profile_form">
+			{% csrf_token %}			
+			{{ form.username }}
+			{{ form.email }}
 			<div id="pen_one" class="id_username"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
 			<div id="pen_second" class="id_email"><image class="pencil" src="{% static 'image/284087.png' %}"></div>
 			<input type="submit" value="Save" class="button_save">
@@ -73,11 +84,11 @@
 			<h1>Your Projects ({{ projects_count }})</h1>
 			{% for project in projects%}
 				<aside class="project-block">
-					<a href="/profile/{{ object.id }}/project/{{ project.id }}" class="project-link">
+					<a href="#" class="project-link">
 						<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgiklLfpmzld5IL8q3mTjjvv2Cy2ONdEFfbdUjiGLXgrooyUVe" class="project-photo">
 					</a>
 					<div class="project-name">
-						<a href="/profile/{{ object.id }}/project/{{ project.id }}">{{project.name}}</a>
+						<a href="/profile/{{ object.id }}/project/{{ project.id }}/">{{project.name}}</a>
 						<div class="point"></div>
 					</div>
 					<ul>
@@ -86,6 +97,17 @@
 						<li class="project-data"><img src="{% static 'image/in_progress.svg' %}"><p class="count">7</p></li>
 					</ul>
 				</aside>
+				<div class="boxes">
+					<div class="windowX">
+						<p class="delete_project">Delete project?</p>
+						<form action="/profile/{{ object.id }}/project/{{ project.id }}/delete/" method="post">
+						{% csrf_token %}
+						<input type="submit" value="Yes" class="button_save_picture">
+						<p class="canselX">No</p>	
+						</form>
+					</div>
+					<div class="maskX"></div>
+				</div>
 			{%endfor%}
 		</div>
 	</div>
@@ -95,20 +117,91 @@
 	</footer>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('#profile_form').trigger('reset');
+			$('#picture_form').trigger('reset');
+			$('#id_username').attr("disabled","");
+			$('#id_email').attr("disabled","");
 			$('.pencil').click(function(){
 				$(this).css({'display': 'none'});
 				$('.button_save').css({'display': 'block'});
 				var view = $('')
 				$('input').attr("disabled",false);
 			});
+			$('.upload_photo').click(function(e){
+				e.preventDefault();
+				var maskHeight = $(document).height();
+				var wH = $(window).height();
+				var maskWidth = $(window).width();
+				$('.mask').css({'height':maskHeight, 'width': maskWidth, 
+								'display': 'block'});
+				$('.mask').fadeIn(1000);
+				$('.mask').fadeTo('slow', 0.8);
+				$('.window').css('top', wH/2 - $('.window').height()/2);
+				$('.window').css('left', maskWidth/2 - $('.window').width()/2);
+				$('.window').css('display', 'block');
+			});
+			$('.cansel').click(function(e){
+				e.preventDefault();
+				$('.window, .mask').hide();
+			});
+			$('.mask').click(function(){
+				$(this).hide();
+				$('.window').hide();
+			});
+			$('.project-link').click(function(e){
+				e.preventDefault();
+				var maskHeight = $(document).height();
+				var wH = $(window).height();
+				var maskWidth = $(window).width();
+				$('.maskX').css({'height':maskHeight, 'width': maskWidth, 
+								'display': 'block'});
+				$('.maskX').fadeIn(1000);
+				$('.maskX').fadeTo('slow', 0.8);
+				$('.windowX').css('top', wH/2 - $('.window').height()/2);
+				$('.windowX').css('left', maskWidth/2 - $('.window').width()/2);
+				$('.windowX').css('display', 'block');
+			});
+			$('.canselX').click(function(e){
+				e.preventDefault();
+				$('.windowX, .maskX').hide();
+			});
+			$('.maskX').click(function(){
+				$(this).hide();
+				$('.windowX').hide();
+			});
 		});
+
+		function FormValid(){
+			var username = document.getElementById('id_username');
+			var email = document.getElementById('id_email');
+			if (!username.value){
+				username.style.border = '2px solid red';
+				return false;
+			}
+
+			if (!email.value){
+				email.style.border = '2px solid red';
+				return false;
+			}
+
+			return true;
+		};
+
+		function formValidPicture(){
+			var picture = document.getElementById('id_picture');
+
+			if(!picture.value){
+				picture.style.border = '2px solid red';
+				return false;
+			}
+
+			return true;
+		}
+
 	</script>
 </div>
 </body>
 </html>
 {% else %}
-<p>{{ project_name.id }}</p>
-<p>{{ projects_count }}</p>
-
 <p>NOT ACCEPTED</p>
 {% endif %}

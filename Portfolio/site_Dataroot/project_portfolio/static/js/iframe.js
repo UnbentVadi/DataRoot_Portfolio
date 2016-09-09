@@ -35,6 +35,7 @@ var reportPhantom = function(view){
 $(document).ready(function() {
 	$('li.response').click( function(e){
 		e.preventDefault();
+		$('.iframe_back').hide();
 		$('#wrapper').attr("style", "");
 		var view = $(this).attr("id");
 		$('li.response').removeClass('active');
@@ -84,10 +85,6 @@ $(document).ready(function() {
 		});
 	});
 
-	$('.close_out').click( function(){
-		window.history.back();
-	});
-
 	$('li.response').hover(function(){
 			$('#phantom').attr("style", "");
 			var view = $(this).attr("id");
@@ -114,7 +111,6 @@ $(function(){
     $(document).mousemove(function(e){
         if (prev_x == -1)
             return;
-        
         var boxX = $("#wrapper").position().left;
         var boxY = $("#wrapper").position().top;
         var boxW = $("#wrapper").width();
@@ -124,7 +120,7 @@ $(function(){
         
         //Check directions
         if (dir.indexOf('n') > -1) //north
-        {
+        {	
             boxY += dy;
             boxH -= dy;
         }
@@ -141,7 +137,9 @@ $(function(){
         {
             boxW += dx;
         }
-            
+        
+        $('.iframe_back').css('display', 'block');
+
         $("#wrapper").css({
             "width":(boxW)+"px",
             "height":(boxH)+"px",

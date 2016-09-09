@@ -448,6 +448,45 @@ header {
     outline: 1.5px solid #A6A8AB;
 }
 
+.pagination {
+    display: block;
+    height: 50px;
+    width: 500px;
+    position: relative;
+    top: 109px;
+    margin: 0px auto;
+}
+
+.pages li {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 20px;
+    color: black;
+}
+
+.pages li:visited {
+	color: black;
+}
+
+.pages {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.arrow-left, .arrow-right {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    top: 7px;
+    margin: 0 20px;
+}
+
+.pages li a:visited {
+    text-decoration: none;
+    color: black;
+    border: none;
+}
 
 /*******FOOTER*******/
 

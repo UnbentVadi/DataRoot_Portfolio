@@ -13,15 +13,15 @@
 <div class="wrapper">
 	<header>
 		<ul class="nav">
-			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
-			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
-			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
+			<li><a href="/profile/{{ object.id }}/" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}/" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/updates/" class="updates">Updates</a></li>
 		</ul>
 		<nav class="user-nav">
 			<div class="dropdown-username">
 				<a class="user">
 					<ul>
-						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li class="user-ava"><img src="{{object.picture}}"></li>
 						<li><p>{{ name }}</p></li>
 						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
 					</ul>
@@ -36,7 +36,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{% url 'iframe' pk=change.pk %}">
+					<a href="{% url 'iframe' pk=change.pk id=user.id %}">
 					<ul class="link-data">
 						<li>{{change.name_url}}</li>
 						<li><img src="{{ change.process }}"></li>
@@ -47,14 +47,14 @@
 				{% empty %}
 					<p>No changes yet</p>
 				{% endfor %}
-				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+				<a href="/profile/{{ object.id }}/updates/" class="view-all">View all Updates</a>
 			</div>
 		</nav>
 		<div class="invisible"></div>
 	</header>
 	<div class="content">
 		<div class="user-data">
-			<img class="ava" src="{% static 'image/head.svg' %}">
+			<a href="/profile/{{ object.id }}/settings/" class="ava"><img class="avata" src="{{ object.picture }}"></a>
 			<p class="username">{{ object.username }}</p>
 			<p class="mail"><a href="mailto:{{user.email}}">{{object.email}}</a></p>
 			<p class="joined">Joined on {{ object.date_joined|date:"d M Y" }}</p>
@@ -63,11 +63,11 @@
 			<h1>Your Projects ({{ projects_count }})</h1>
 			{% for project in projects%}
 				<aside class="project-block">
-					<a href="/profile/{{ object.id }}/project/{{ project.id }}" class="project-link">
+					<a href="/profile/{{ object.id }}/project/{{ project.id }}/" class="project-link">
 						<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgiklLfpmzld5IL8q3mTjjvv2Cy2ONdEFfbdUjiGLXgrooyUVe" class="project-photo">
 					</a>
 					<div class="project-name">
-						<a href="/profile/{{ object.id }}/project/{{ project.id }}">{{project.name}}</a>
+						<a href="/profile/{{ object.id }}/project/{{ project.id }}/">{{project.name}}</a>
 						<div class="point"></div>
 					</div>
 					<ul>		
@@ -83,7 +83,7 @@
 			<h1>Last Update</h1>
 			<div class="links-list">
 				{% for change in five_changes%}
-					<a href="{% url 'iframe' pk=change.pk %}">
+					<a href="{% url 'iframe' pk=change.pk id=user.id %}">
 						<ul class="updates-data">
 							<li>{{change.name_url}}</li>
 							<li><img src="{{ change.process }}"></li>

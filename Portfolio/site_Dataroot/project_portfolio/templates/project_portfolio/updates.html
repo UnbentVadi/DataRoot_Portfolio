@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% if request.user.pk == object.id %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +13,15 @@
 <div class="wrapper">
 	<header>
 		<ul class="nav">
-			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
-			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
-			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
+			<li><a href="/profile/{{ object.id }}/" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}/" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/updates/" class="updates">Updates</a></li>
 		</ul>
 		<nav class="user-nav">
 			<div class="dropdown-username">
 				<a class="user">
 					<ul>
-						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li class="user-ava"><img src="{{object.picture}}"></li>
 						<li><p>{{ name }}</p></li>
 						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
 					</ul>
@@ -37,7 +36,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{% url 'iframe' pk=change.pk %}">
+					<a href="{% url 'iframe' pk=change.pk id=user.id %}">
 					<ul class="link-data">
 						<li>{{change.name_url}}</li>
 						<li><img src="{{ change.process }}"></li>
@@ -48,7 +47,7 @@
 				{% empty %}
 					<p>No changes yet</p>
 				{% endfor %}
-				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+				<a href="/profile/{{ object.id }}/updates/" class="view-all">View all Updates</a>
 			</div>
 		</nav>
 		<div class="invisible"></div>
@@ -58,7 +57,7 @@
 			<h1>Last Updates</h1>
 			<div class="links-list">
 				{% for link in all_links %}
-					<a href="{% url 'iframe' pk=link.pk %}">
+					<a href="{% url 'iframe' pk=link.pk id=user.id %}">
 						<ul class="updates-data">
 							<li>{{link.name_url}}</li>
 							<li><img src="{{ link.process }}"></li>
@@ -89,6 +88,27 @@
 				</div>
 			</div>
 		</div>
+		<div class="pagination">
+			<ul class="pages">
+			{% if all_links.has_previous %}
+				<li class="previous"><a href="?page={{all_links.previous_page_number}}"><img class='arrow-left' src="{% static 'image/left-arrow.svg' %}"></a></li>
+			{% else %}
+				<li class="previous_disabled"><a href=""></a></li>
+			{% endif %}
+			{% for page in all_links.paginator.page_range %}
+				{% if page == all_links.number %}
+				<li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+				{% else %}
+				<li class="response"><a href="?page={{ page }}">{{ page }}</a></li>
+				{% endif %}
+			{% endfor %}
+			{% if all_links.has_next %}
+				<li class="next"><a href="?page={{all_links.next_page_number}}"><img class='arrow-right' src="{% static 'image/arrow-pointing-to-right.svg' %}"></li>
+			{% else %}
+				<li class="next_disabled"><a href=""></a></li>
+			{% endif %}
+			</ul>
+		</div>
 	</div>
 	<footer>
 		<p class="copyright">&copy All rights reserved</p>
@@ -97,7 +117,5 @@
 </div>
 </body>
 </html>
-{% else %}
-<p>NOT ACCEPTED</p>
-{% endif %}
+
 

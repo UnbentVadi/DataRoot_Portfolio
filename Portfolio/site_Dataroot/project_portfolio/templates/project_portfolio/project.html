@@ -13,15 +13,15 @@
 <div class="wrapper">
 	<header>
 		<ul class="nav">
-			<li><a href="/profile/{{ object.id }}" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
-			<li><a href="/profile/{{ object.id }}" class="profile">Profile</a></li>
+			<li><a href="/profile/{{ object.id }}/" class="logo"><img src="{% static 'image/logo.png' %}"></a></li>
+			<li><a href="/profile/{{ object.id }}/" class="profile">Profile</a></li>
 			<li><a href="/profile/{{ object.id }}/updates" class="updates">Updates</a></li>
 		</ul>
 		<nav class="user-nav">
 			<div class="dropdown-username">
 				<a class="user">
 					<ul>
-						<li class="user-ava"><img src="{% static 'image/head.svg' %}"></li>
+						<li class="user-ava"><img src="{{object.picture}}"></li>
 						<li><p>{{ name }}</p></li>
 						<li class="dropdown-image"><img src="{% static 'image/dropdown-cf3420.svg' %}"></li>
 					</ul>
@@ -36,7 +36,7 @@
 			<a class="buzzer"><img src="{% static 'image/kolokolchik.svg' %}" class="buzzer-img"></a>
 			<div class="dropdown-buzzer">
 				{% for change in four_changes%}
-					<a href="{% url 'iframe' pk=change.pk %}">
+					<a href="{% url 'iframe' pk=change.pk id=user.id %}">
 					<ul class="link-data">
 						<li>{{change.name_url}}</li>
 						<li><img src="{{ change.process }}"></li>
@@ -47,7 +47,7 @@
 				{% empty %}
 					<p>No changes yet</p>
 				{% endfor %}
-				<a href="/profile/{{ object.id }}/updates" class="view-all">View all Updates</a>
+				<a href="/profile/{{ object.id }}/updates/" class="view-all">View all Updates</a>
 			</div>
 		</nav>
 		<div class="invisible"></div>
@@ -71,7 +71,7 @@
 				<h1>Посилання на сторінки</h1>
 				<div class="links-list">
 					{% for link in links%}
-						<a href="{% url 'iframe' pk=link.pk %}">
+						<a href="{% url 'iframe' pk=link.pk id=user.id %}">
 							<ul class="link-info">
 								<li>{{link.name_url}}</li>
 								<li><img src="{{ link.process }}"></li>

@@ -297,6 +297,12 @@ header {
 	top: 12.5px;
 	left: 175px;
 	background: #DADEE7;
+	cursor: pointer;
+}
+
+.avata {
+	height: 100%;
+	width: 100%;
 }
 
 .username {

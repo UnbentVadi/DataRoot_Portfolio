@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import UserManager, AbstractUser
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 class MyUser(AbstractUser):
     """
@@ -12,6 +13,8 @@ class MyUser(AbstractUser):
 
     objects = UserManager()
 
+    def get_absolute_url(self):
+        return reverse('Profile', kwargs = {'pk': self.pk})
 
 class Projects(models.Model):
     """
@@ -22,7 +25,6 @@ class Projects(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Link(models.Model):
     """

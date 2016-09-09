@@ -1,6 +1,7 @@
-
+from django import forms
 from django.forms import ModelForm
-from project_portfolio.models import MyUser
+from django.shortcuts import render_to_response
+from project_portfolio.models import MyUser, Projects
 
 class ProfileForm(ModelForm):
 	class Meta:
@@ -14,3 +15,14 @@ class ProfileForm(ModelForm):
 		self.fields['email'].widget.attrs.update({
 			"disabled": "true",
 			})
+
+
+class ProfilePictureForm(ModelForm):
+	class Meta:
+		model = MyUser
+		fields = ['picture']
+
+class ProjectsIdForm(ModelForm):
+	class Meta:
+		model = Projects
+		fields = ['id']
